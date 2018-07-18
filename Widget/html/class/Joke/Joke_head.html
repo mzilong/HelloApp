@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../../css/aui.2.0.css"/>
+		<style type="text/css">
+			.aui-bar-03a9f4 {
+				min-height: 44px;
+				background-color: #03a9f4;
+				height: 80px;
+				text-align: center;
+				padding-top: 20px;
+				padding-bottom: 15px;
+				padding-left: 5px;
+				padding-right: 5px;
+				box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+				font-size: 1.0rem;
+			}
+			.aui-title {
+				position: absolute;
+				width: 100%;
+				margin: 0 -10px;
+				text-align: center;
+				white-space: nowrap;
+				color: #ffffff;
+			}
+			#demo .aui-bar-btn-item.aui-active {
+				background-color: transparent;
+				color: #212121;
+			}
+			#aui-div-header {
+				padding-top: 40px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-03a9f4 aui-bar-nav" id='aui-header'>
+			<div class="aui-title">
+				笑话大全
+			</div>
+			<div class="aui-bar aui-bar-btn aui-bar-btn-round" id='aui-div-header'>
+				<div class="aui-bar-btn-item aui-active" id="jokeItem">
+					文字笑话
+				</div>
+				<div class="aui-bar-btn-item " id='jokeItem1'>
+					趣图笑话
+				</div>
+			</div>
+		</header>
+	</body>
+	<script type="text/javascript" src="../../../script/api.js"></script>
+	<script type="text/javascript" src="../../../script/aui-tab.js" ></script>
+	<script type="text/javascript">
+		var headerPos;
+		apiready = function() {
+			api.parseTapmode();
+			$api.fixStatusBar($api.byId('aui-header'));
+			headerPos = $api.offset($api.byId('aui-header'));
+			api.openFrameGroup({
+				name : 'group1',
+				bgColor : 'rgba(0,0,0,0)',
+				scrollEnabled : true,
+				rect : {
+					x : 0,
+					y : headerPos.h,
+					w : 'auto',
+					h : 'auto'
+				},
+				index : 0,
+				frames : [{
+					name : 'Joke',
+					url : './Joke.html',
+					bgColor : 'rgba(0,0,0,0)'
+				}, {
+					name : 'Joke1',
+					url : './Joke1.html',
+					bgColor : 'rgba(0,0,0,0)'
+				}]
+			}, function(ret, err) {
+				var index = ret.index;				
+				if (index==0) 
+				{
+					 $api.removeCls($api.dom('.aui-active'), 'aui-active');
+					 $api.addCls($api.dom('#jokeItem'), 'aui-active');
+				}
+				else
+				{
+					 $api.removeCls($api.dom('.aui-active'), 'aui-active');
+					 $api.addCls($api.dom('#jokeItem1'), 'aui-active');	
+				}
+			});
+		}
+		var bar = document.querySelectorAll(".aui-bar-btn");
+		if (bar) {
+			for (var i = 0; i < bar.length; i++) {
+				var d = bar[i];
+				var tab = new auiTab({
+					element : bar[i],
+					repeatClick : true
+				}, function(ret) {
+					if (ret.index == 1) {
+					api.setFrameGroupIndex({
+    					name: 'group1',
+    					index: 0,
+    					scroll: true
+					});
+					
+					} else {
+					api.setFrameGroupIndex({
+    					name: 'group1',
+    					index: 1,
+    					scroll: true
+					});
+					
+					}
+				});
+			}
+		}
+	</script>
+</html>

@@ -1,0 +1,542 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>Hello APP</title>
+		<link rel="stylesheet" type="text/css" href="../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../css/aui.2.0.css" />
+		<link rel="stylesheet" type="text/css" href="../css/iconfont/iconfont.css" />
+		<style type="text/css">
+			html, body {
+				height: 100%;
+			}
+			#main {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+			}
+			.headdisplay {
+				display: none;
+			}
+			.active {
+				display: block;
+			}
+			@font-face {
+				font-family: 'iconfont';
+				src: url('../css/Hui.ttf') format('truetype');
+			}
+			.iconfont1 {
+				font-family: "iconfont" !important;
+				font-size: 16px;
+				font-style: normal;
+				-webkit-font-smoothing: antialiased;
+				-webkit-text-stroke-width: 0.2px;
+				-moz-osx-font-smoothing: grayscale;
+			}
+			.span-icon:before {
+				content: "\f035";
+				font-size: 1.0 rem;
+			}
+			.icon-dot-more:before {
+				content: "\f098";
+			}
+			.icon-search-list:before {
+				content: "\f120";
+			}
+			.icon-moban:before {
+				content: "\f089";
+			}
+			.icon-reward:before {
+				content: "\f081";
+			}
+			.icon-hot:before {
+				content: "\f097";
+			}
+			.icon-doc:before {
+				content: "\f088";
+			}
+			.dot {
+				font-size: 1.0rem;
+			}
+			.header-drop-menu {
+				position: relative;
+				display: block;
+				float: right;
+				color: white;
+				padding-left: 5px;
+				padding-right: 5px;
+				z-index: 1000;
+			}
+			.vertical-middle {
+				display: -webkit-box;
+				-webkit-box-orient: horizontal;
+				-webkit-box-align: center;
+				display: box;
+				box-orient: horizontal;
+				box-align: center;
+			}
+			.header-span2 {
+				position: relative;
+				display: block;
+				float: right;
+				color: white;
+				padding-left: 5px;
+				padding-right: 5px;
+				z-index: 1000;
+			}
+			.header-span2-i {
+				font-size: 1.5rem;
+			}
+			.header-submenu-font {
+				display: block;
+				font-size: 1.0rem;
+				margin-top: 5px;
+				color: white;
+			}
+			.header-submenu-icon {
+				height: 44px;
+				border-radius: 15px;
+				-webkit-border-radius: 15px;
+				margin-left: auto;
+				margin-right: auto;
+				position: relative;
+				display: -webkit-box;
+				-webkit-box-orient: horizontal;
+				-webkit-box-pack: center;
+				-webkit-box-align: center;
+				display: box;
+				box-orient: horizontal;
+				box-pack: center;
+				box-align: center;
+			}
+			.header-submenu-i {
+				font-size: 1.5rem;
+				color: white;
+			}
+			.header-submenu-div {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+				box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+				padding-top: 3px;
+				padding-bottom: 5px;
+			}
+			.header-submenu-div-click:active {
+				background-color: #3498db;
+			}
+			.flexbox-horizontal {
+				display: box;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-orient: horizontal;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				width: 100%;
+				-webkit-flex-direction: row;
+				flex-direction: row;
+				box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+			}
+			.header-div-submenu {
+				text-align: center;
+				background-color: #03a9f4;
+				padding-top: 5px;
+				padding-bottom: 15px;
+				padding-left: 5px;
+				padding-right: 5px;
+				box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+			}
+			.aui-bar-03a9f4 {
+				min-height: 44px;
+				background-color: #03a9f4;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap" class="aui-bar-nav">
+			<header class="aui-bar aui-bar-nav headdisplay active" id="aui-header">
+				<a class="aui-pull-left" tapmode onclick="slide()"> <span class="aui-iconfont iconfont icon-more-menu"></span> </a>
+				<div class="aui-title">
+					工具大全
+				</div>
+			</header>
+			<header class="aui-bar aui-bar-nav headdisplay" id="aui-collect">
+				<a class="aui-pull-left" tapmode onclick="slide()"> <span class="aui-iconfont iconfont icon-more-menu"></span> </a>
+				<div class="aui-title">
+					收藏列表
+				</div>
+				<a class="aui-pull-right" tapmode onclick="api.openWin({name: 'waterfallAdd_head',url: './waterfallAdd_head.html'});"> <span class="aui-iconfont iconfont"></span> 添加</a>
+			</header>
+			<header class="aui-bar aui-bar-nav  headdisplay  " id="tool-header">
+				<a class="aui-pull-left" tapmode onclick="slide()"> <span class="aui-iconfont iconfont icon-more-menu"></span> </a>
+				<div class="aui-title">
+					工具列表
+				</div>
+				<span tapmode="" id="drop-menu" data-open="false" class="iconfont1 header-drop-menu vertical-middle "><i class="iconfont1 icon-dot-more dot vertical-middle" onclick="showDropMenu()"></i></span>
+				<span tapmode=""  class="iconfont1 header-span2 vertical-middle"> <i class="iconfont1 icon-search-list header-span2-i vertical-middle" ></i> </span>
+				<div class="flexbox-horizontal header-div-submenu aui-bar-03a9f4">
+					<div tapmode="" class="header-submenu-div header-submenu-div-click" onclick="api.openWin({name: 'case_head',url: './class/Hui/html/templates/templates_head.html'});">
+						<span class="header-submenu-icon" style="height: 42px; width: 42px; "><i class="iconfont1 icon-moban header-submenu-i"></i></span>
+						<label class="header-submenu-font">模板商店</label>
+					</div>
+					<div tapmode=""  class="header-submenu-div header-submenu-div-click">
+						<span class="header-submenu-icon" style="height: 42px; width: 42px; "><i class="iconfont1 icon-reward header-submenu-i"></i></span>
+						<label class="header-submenu-font">成功案例</label>
+					</div>
+					<div tapmode=""   class="header-submenu-div header-submenu-div-click" onclick="api.openWin({name: 'case_head',url: './class/Hui/html/animate/animate_head.html'});">
+						<span class="header-submenu-icon" style="height: 42px; width: 42px; "><i class="iconfont1 icon-hot header-submenu-i"></i></span>
+						<label class="header-submenu-font">酷炫动画</label>
+					</div>
+					<div tapmode="" class="header-submenu-div header-submenu-div-click">
+						<span class="header-submenu-icon" style="height: 42px; width: 42px; "><i class="iconfont1 icon-doc header-submenu-i"></i></span>
+						<label class="header-submenu-font">官方文档</label>
+					</div>
+				</div>
+			</header>
+			<header class="aui-bar aui-bar-nav  headdisplay " id="ucenter-header">
+				<a class="aui-pull-left" tapmode onclick="slide()"> <span class="aui-iconfont iconfont icon-more-menu"></span> </a>
+				<div class="aui-title">
+					个人中心
+				</div>
+				<a class="aui-pull-right" tapmode onclick="api.openWin({name: 'ucenter_setting_head',url: './ucenter_setting_head.html'});"> <span class="aui-iconfont iconfont icon-shezhi"></span> </a>
+			</header>
+		</div>
+		<div id="main"></div>
+		<footer class="aui-bar aui-bar-tab" id="footer">
+			<div class="aui-bar-tab-item aui-active" tapmode>
+				<i class="aui-iconfont aui-icon-home"></i>
+				<div class="aui-bar-tab-label">
+					首页
+				</div>
+			</div>
+			<div class="aui-bar-tab-item" tapmode>
+				<i class="aui-iconfont aui-icon-star"></i>
+				<div class="aui-bar-tab-label">
+					收藏
+				</div>
+			</div>
+			<div class="aui-bar-tab-item" tapmode>
+				<i class="aui-iconfont aui-icon-edit"></i>
+				<div class="aui-bar-tab-label">
+					工具
+				</div>
+			</div>
+			<div class="aui-bar-tab-item" tapmode>
+				<i class="aui-iconfont aui-icon-my"></i>
+				<div class="aui-bar-tab-label">
+					我的
+				</div>
+			</div>
+		</footer>
+	</body>
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript" src="../script/aui-tab.js" ></script>
+	<script type="text/javascript" src="../script/SHA1.js"></script>
+	<script type="text/javascript">
+		//onclick="api.openWin({name: 'common_index',url: './common_index.html',animation: { type: 'push', subType: 'from_bottom' } }); "
+		var headerPos, main, mainPos, footerPos, footer, main = 0, tools = 0, ucenter = 0,collect=0;
+		var indexOrGuide = function() {
+			if ($api.getStorage('firsttime')) {
+				api.setFrameGroupAttr({
+					name : 'guide',
+					hidden : 'true'
+				});
+				api.openFrame({
+					name : 'main',
+					url : './main.html',
+					bounces : false,
+					rect : {
+						x : 0,
+						y : headerPos.h,
+						w : 'auto',
+						h : api.winHeight - footerPos.h - headerPos.h
+					}
+				});
+				main = 1;
+				api.sendFrameToBack({
+					from : 'main',
+				});
+			} else {
+				api.openFrameGroup({
+					name : 'guide',
+					background : '#000000',
+					scrollEnabled : true,
+					rect : {
+						x : 0,
+						y : 0,
+						w : 'auto',
+						h : api.winHeight
+					},
+					index : 0,
+					frames : [{
+						name : 'guide1',
+						url : './guide/guide1.html',
+						pageParam : {},
+						bounces : false,
+						opaque : true,
+						bgColor : '#1CA428'
+					}, {
+						name : 'guide2',
+						url : './guide/guide2.html',
+						pageParam : {},
+						bounces : false,
+						opaque : true,
+						bgColor : '#9448B4'
+					}, {
+						name : 'guide3',
+						url : './guide/guide3.html',
+						pageParam : {},
+						bounces : false,
+						opaque : true,
+						bgColor : '#249ADA'
+					}]
+				}, function(ret, err) {
+					var name = ret.name;
+					var index = ret.index;
+					$api.setStorage('firsttime', true);
+				});
+			}
+		};
+		var slide = function() {
+			//			api.openDrawerLayout({
+			//				name : 'slide_body',
+			//				url : './html/slide_body.html',
+			//				leftPane : {
+			//				 	edge:100,
+			//					name : 'index',
+			//					url : './index.html'
+			//				}
+			//			});
+			api.openSlidPane({
+				type : 'left'
+			});
+		};
+		apiready = function() {
+			header = $api.byId('wrap');
+			//适配iOS 7+，Android 4.4+状态栏
+			$api.fixStatusBar(header);
+			headerPos = $api.offset(header);
+			footer = $api.byId('footer');
+			footerPos = $api.offset(footer);
+			indexOrGuide();
+			api.parseTapmode();
+			var backSecond = 0;
+			api.addEventListener({
+				name : 'keyback'
+			}, function(ret, err) {
+				api.closeSlidPane();
+				var curSecond = new Date().getSeconds();
+				if (Math.abs(curSecond - backSecond) > 2) {
+					backSecond = curSecond;
+					api.toast({
+						msg : '连续按两次到后台运行',
+						duration : 2000,
+						location : 'bottom'
+					});
+				} else {
+					var isAndroid = (/android/gi).test(navigator.appVersion);
+					if (isAndroid) {
+						api.toLauncher();
+					} else {
+						var toast = new auiToast();
+						toast.success({
+							title : "非Android不能隐藏到后台",
+							duration : 2000
+						});
+					}
+				}
+			});
+		};
+		var tab = new auiTab({
+			element : document.getElementById("footer"),
+			index: 1
+		}, function(ret) {
+			if (ret) {
+				if (ret.index == 1) {
+					var heade = $api.dom('#wrap .active');
+					$api.removeCls(heade, 'active');
+					var thisHeader = $api.dom('#aui-header');
+					$api.addCls(thisHeader, 'active');
+					if (main != 0) {
+						api.setFrameAttr({
+							name : 'main',
+							hidden : false
+						});
+					} else {
+						api.openFrame({
+							name : 'main',
+							url : './main.html',
+							bounces : false,
+							rect : {
+								x : 0,
+								y : headerPos.h,
+								w : 'auto',
+								h : api.winHeight - footerPos.h - headerPos.h
+							}
+						});
+						main = 1;
+					}
+					api.setFrameAttr({
+						name : 'tools',
+						hidden : true
+					});
+					api.setFrameAttr({
+						name: 'collection_body',
+						hidden: true
+					});
+					api.setFrameAttr({
+						name : 'ucenter_body',
+						hidden : true
+					});
+				}
+				else if (ret.index == 2) {
+					showtab2();
+				}
+				else if (ret.index == 3) {
+					showtab3();
+				} else if (ret.index == 4) {
+					var heade = $api.dom('#wrap .active');
+					$api.removeCls(heade, 'active');
+					var thisHeader = $api.dom('#ucenter-header');
+					$api.addCls(thisHeader, 'active');
+					if (ucenter != 0) {
+						api.setFrameAttr({
+							name : 'ucenter_body',
+							hidden : false
+						});
+					} else {
+						api.openFrame({
+							name : 'ucenter_body',
+							url : './ucenter_body.html',
+							bounces : false,
+							rect : {
+								x : 0,
+								y : headerPos.h,
+								w : 'auto',
+								h : api.winHeight - footerPos.h - headerPos.h
+							}
+						});
+						ucenter = 1;
+					}
+					api.setFrameAttr({
+						name : 'main',
+						hidden : true
+					});
+					api.setFrameAttr({
+						name: 'collection_body',
+						hidden: true
+					});
+					api.setFrameAttr({
+						name : 'tools',
+						hidden : true
+					});
+				}
+			}
+		});
+	function showtab2(){
+		tab.setActive(2);
+		var heade = $api.dom('#wrap .active');
+		$api.removeCls(heade, 'active');
+		var thisHeader = $api.dom('#aui-collect');
+		$api.addCls(thisHeader, 'active');
+		if (collect != 0) {
+			api.setFrameAttr({
+				name : 'collection_body',
+				hidden : false
+			});
+		} else {
+			api.openFrame({
+				name : 'collection_body',
+				url : './collection_body.html',
+				bounces : false,
+				rect : {
+					x : 0,
+					y : headerPos.h,
+					w : 'auto',
+					h : api.winHeight - footerPos.h - headerPos.h
+				}
+			});
+			collect = 1;
+		}
+		api.setFrameAttr({
+			name : 'tools',
+			hidden : true
+		});
+		api.setFrameAttr({
+				name: 'main',
+				hidden: true
+		});
+		api.setFrameAttr({
+			name : 'ucenter_body',
+			hidden : true
+		});
+	}
+		function showtab3(){
+			tab.setActive(3);
+			$api.removeCls($api.dom('#wrap .active'), 'active');
+			$api.addCls($api.dom('#tool-header'), 'active');
+			if (tools != 0) {
+				api.setFrameAttr({
+					name : 'tools',
+					hidden : false
+				});
+			} else {
+				api.openFrame({
+					name : 'toolsClass',
+					url : './toolsClass.html',
+					bounces : false,
+					rect : {
+						x : 0,
+						y : headerPos.h + 100,
+						w : 'auto',
+						h : api.winHeight - footerPos.h - headerPos.h - 100
+					}
+				});
+				tools = 1;
+			}
+			api.setFrameAttr({
+				name : 'main',
+				hidden : true
+			});
+			api.setFrameAttr({
+				name: 'collection_body',
+				hidden: true
+			});
+			api.setFrameAttr({
+				name : 'ucenter_body',
+				hidden : true
+			});
+		}
+		function showDropMenu() {
+			var openStatu = document.getElementById("drop-menu").getAttribute("data-open");
+			if (openStatu == "false") {
+				api.openFrame({
+					name : 'more_info_index',
+					url : './more_info_index.html',
+					rect : {
+						x : 0,
+						y : headerPos.h,
+						w : 'auto',
+						h : 'auto'
+					},
+					pageParam : {
+						headerY : headerPos.h,
+					},
+					bounces : false
+				});
+				document.getElementById("drop-menu").setAttribute("data-open", "true");
+			} else {
+				api.execScript({
+					frameName : 'more_info_index',
+					script : "showShare();"
+				});
+				document.getElementById("drop-menu").setAttribute("data-open", "false");
+			}
+		}
+	</script>
+</html>

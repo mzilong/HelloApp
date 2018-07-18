@@ -1,0 +1,409 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title>Hello APP</title>
+	<link rel="stylesheet" type="text/css" href="../css/api.css" />
+	<link rel="stylesheet" href="../css/swiper.min.css" />
+	<style>
+		.width-height-100-percent {
+			width: 100%;
+			height: 100%;
+		}
+
+		.swiper-container-2-div {
+			width: 100%;
+			padding-bottom: 10px;
+			background-color: white;
+			overflow: hidden;
+		}
+
+		.swiper-container-2-div2 {
+			text-align: center;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			background-color: white;
+		}
+
+		.swiper-container-2-icon {
+			height: 44px;
+			display: -webkit-box;
+			-webkit-box-orient: horizontal;
+			-webkit-box-pack: center;
+			-webkit-box-align: center;
+			display: box;
+			box-orient: horizontal;
+			box-pack: center;
+			box-align: center;
+			border-radius: 50%;
+			-webkit-border-radius: 50%;
+			margin-left: auto;
+			margin-right: auto;
+			height: 42px;
+			width: 42px;
+		}
+
+		.swiper-container-i {
+			font-size: 1.2rem;
+			color: white;
+		}
+
+		.swiper-container-label {
+			display: block;
+			font-size: 0.8rem;
+			margin-top: 5px;
+		}
+
+		.title-div {
+			background-color: white;
+			width: 100%
+		}
+
+		.title-div-flex-item {
+			padding-left: 10px;
+			padding-right: 10px;
+			font-size: 1.1rem;
+			padding-top: 12px;
+			padding-bottom: 12px;
+			-webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+			box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+		}
+
+		.title-span {
+			width: 45px;
+			height: 18px;
+			display: block;
+			margin-right: 5px;
+		}
+
+		.title-span label {
+			height: 18px;
+			line-height: 18px;
+			padding: 0 6px;
+			border-radius: 9px;
+			-webkit-border-radius: 9px;
+			transform: translateY(0.5);
+			-webkit-transform: translateY(0.5);
+		}
+
+		.title-span-more {
+			font-size: 1 rem;
+			display: inline-block;
+			background-color: #4db7ad;
+			color: white;
+			height: 18px;
+			line-height: 18px;
+		}
+
+		.flexbox-horizontal {
+			display: box;
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-box-orient: horizontal;
+			-webkit-flex-flow: row;
+			flex-flow: row;
+			width: 100%;
+			-webkit-flex-direction: row;
+			flex-direction: row;
+			box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+		}
+
+		.flex-item {
+			-webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+			box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+		}
+
+		.vertical-middle {
+			display: -webkit-box;
+			-webkit-box-orient: horizontal;
+			-webkit-box-align: center;
+			display: box;
+			box-orient: horizontal;
+			box-align: center;
+		}
+
+		.swiper-container-3-div {
+			padding-left: 10px;
+			padding-right: 10px;
+			overflow: hidden;
+		}
+
+		.swiper-slide-img {
+			width: 100%;
+			display: block;
+		}
+
+		.swiper-slide-font {
+			text-align: center;
+			font-size: 1.0rem;
+			padding-top: 5px;
+		}
+
+		@font-face {
+			font-family: 'iconfont';
+			src: url('../css/Hui.ttf') format('truetype');
+		}
+
+		.iconfont {
+			font-family: "iconfont" !important;
+			font-size: 16px;
+			font-style: normal;
+			-webkit-font-smoothing: antialiased;
+			-webkit-text-stroke-width: 0.2px;
+			-moz-osx-font-smoothing: grayscale;
+		}
+
+		.icon-alipay:before {
+			content: "\f108";
+		}
+
+		.icon-aliwangwang:before {
+			content: "\f092";
+		}
+
+		.icon-android:before {
+			content: "\f100";
+		}
+
+		.icon-camera:before {
+			content: "\f062";
+		}
+
+		.icon-com:before {
+			content: "\f086";
+		}
+
+		.theme-background-color1 {
+			background-color: #52ace5;
+		}
+
+		.theme-background-color2 {
+			background-color: #ff7f8a;
+		}
+
+		.theme-background-color3 {
+			background-color: #5cb85c;
+		}
+
+		.theme-background-color4 {
+			background-color: #ffa977;
+		}
+
+		.theme-background-color5 {
+			background-color: #4db7ad;
+		}
+
+		.title-touch-active {}
+
+		.tiele-touch-active:active {
+			background: #f4f4f4;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="overflow-hidden">
+		<div class="swiper-container  width-height-100-percent">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide"><img src="../image/lunbo1.jpg" class="width-height-100-percent" />
+				</div>
+				<div class="swiper-slide"><img src="../image/lunbo2.jpg" class="width-height-100-percent" />
+				</div>
+				<div class="swiper-slide"><img src="../image/lunbo3.jpg" class="width-height-100-percent" />
+				</div>
+			</div>
+			<div class="swiper-pagination" style="bottom:10!important"></div>
+		</div>
+	</div>
+	<div class="swiper-container-2  swiper-container-2-div">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide">
+				<div class="flexbox-horizontal swiper-container-2-div2">
+					<div class="flex-item" onclick="api.openWin({name: 'blob',url: './class/blob/blob.html',})">
+						<span class=" theme-background-color1  swiper-container-2-icon"><i class="iconfont icon-alipay swiper-container-i"></i></span>
+						<label class=" swiper-container-label ">水滴效果</label>
+					</div>
+					<div class="flex-item" onclick="api.openWin({name: 'Chess',url: './class/Chess/Chess.html',})">
+						<span class=" theme-background-color2 swiper-container-2-icon"><i class="iconfont icon-aliwangwang swiper-container-i"></i></span>
+						<label class="swiper-container-label">下象棋</label>
+					</div>
+					<div class="flex-item" onclick="api.openWin({name: 'gobang',url: './class/gobang/gobang.html',})" >
+						<span class=" theme-background-color3 swiper-container-2-icon"><i class="iconfont icon-android swiper-container-i"></i></span>
+						<label class="swiper-container-label">五子棋</label>
+					</div>
+					<div class="flex-item" onclick="api.openWin({name: 'flappy',url: './class/flappy/flappy.html',})" >
+						<span class="theme-background-color4 swiper-container-2-icon"><i class="iconfont icon-camera swiper-container-i"></i></span>
+						<label class="swiper-container-label">Flappy</label>
+					</div>
+					<div class="flex-item" onclick="api.openWin({name : 'Joke_head',url : './class/Joke/Joke_head.html',});">
+						<span class="theme-background-color5 swiper-container-2-icon"><i class="iconfont icon-com swiper-container-i"></i></span>
+						<label class="swiper-container-label">笑话大全</label>
+					</div>
+				</div>
+				<div class="flexbox-horizontal swiper-container-2-div2">
+					<div class="flex-item" onclick="api.openWin({name : 'IdCard_head',url : './class/IdCard_head.html',});">
+						<span class=" theme-background-color1 swiper-container-2-icon"><i class="iconfont icon-alipay swiper-container-i"></i></span>
+						<label class="swiper-container-label">身份证查询</label>
+					</div>
+					<div class="flex-item" onclick="api.openWin({name : 'phone_head',url : './class/phone_head.html',});">
+						<span class=" theme-background-color2 swiper-container-2-icon"><i class="iconfont icon-aliwangwang swiper-container-i"></i></span>
+						<label class="swiper-container-label">手机查询</label>
+					</div>
+					<div class="flex-item" onclick="api.openWin({name : 'ip_head',url : './class/ip_head.html',});">
+						<span class=" theme-background-color3 swiper-container-2-icon"><i class="iconfont icon-android swiper-container-i"></i></span>
+						<label class="swiper-container-label">IP查询</label>
+					</div>
+					<div class="flex-item" onclick="api.openWin({name : 'bankCard_head',url : './class/bankCard_head.html',});">
+						<span class=" theme-background-color4 swiper-container-2-icon"><i class="iconfont icon-camera swiper-container-i"></i></span>
+						<label class="swiper-container-label">银行卡查询</label>
+					</div>
+					<div class="flex-item" onclick="api.openWin({name : 'BrainSharp_head',url : './class/BrainSharp/BrainSharp_head.html',});">
+						<span class=" theme-background-color5 swiper-container-2-icon"><i class="iconfont icon-com swiper-container-i"></i></span>
+						<label class="swiper-container-label">脑筋急转弯</label>
+					</div>
+				</div>
+			</div>
+			<div class="swiper-slide">
+				<div class="flexbox-horizontal swiper-container-2-div2">
+					<div class="flex-item" onclick="api.openWin({name : 'exchange_head',url : './class/CurrencyConversion/exchange_head.html',});">
+						<span class="theme-background-color1 swiper-container-2-icon"><i class="iconfont icon-alipay swiper-container-i"></i></span>
+						<label class="swiper-container-label">汇率转换</label>
+					</div>
+					<div class="flex-item" onclick="api.openWin({name : 'classification_head',url : './class/Classification/classification_head.html',});">
+						<span class=" theme-background-color2 swiper-container-2-icon"><i class="iconfont icon-aliwangwang swiper-container-i"></i></span>
+						<label class="swiper-container-label">火星文转换</label>
+					</div>
+					<div class="flex-item" onclick="api.openWin({name : 'QQ_head',url : './class/QQTest/QQ_head.html',});">
+						<span class=" theme-background-color3 swiper-container-2-icon"><i class="iconfont icon-android swiper-container-i"></i></span>
+						<label class="swiper-container-label">QQ测吉凶</label>
+					</div>
+					<div class="flex-item" onclick="api.openWin({name : 'CrazyDream_head',url : './class/CrazyDream/CrazyDream_head.html',});">
+						<span class="theme-background-color4 swiper-container-2-icon"><i class="iconfont icon-camera swiper-container-i"></i></span>
+						<label class="swiper-container-label">周公解梦</label>
+					</div>
+					<div class="flex-item"  onclick="api.openWin({name : 'IdiomsDictionary',url : './class/IdiomsDictionary/IdiomsDictionary_head.html',});">
+						<span class="theme-background-color5 swiper-container-2-icon"><i class="iconfont icon-com swiper-container-i"></i></span>
+						<label class="swiper-container-label">成语词典</label>
+					</div>
+				</div>
+				<div class="flexbox-horizontal swiper-container-2-div2">
+					<div class="flex-item" onclick="api.openWin({name : 'AUI',url : './class/aui/index.html'});">
+						<span class=" theme-background-color1 swiper-container-2-icon"><i class="iconfont icon-alipay swiper-container-i"></i></span>
+						<label class="swiper-container-label">AUI</label>
+					</div>
+					<div class="flex-item" onclick="api.openWin({name : 'AUI2.0',url : './class/aui2/index.html'});">
+						<span class="theme-background-color2 swiper-container-2-icon"><i class="iconfont icon-aliwangwang swiper-container-i"></i></span>
+						<label class="swiper-container-label">AUI2.0</label>
+					</div>
+					<div class="flex-item" onclick="api.openWin({name : 'AUI2.1',url : './class/aui2.1/index.html'});">
+						<span class="theme-background-color3 swiper-container-2-icon"><i class="iconfont icon-android swiper-container-i"></i></span>
+						<label class="swiper-container-label">AUI2.1</label>
+					</div>
+					<div class="flex-item" onclick="api.openWin({name : 'HUI',url : './class/Hui/html/index.html'});">
+						<span class="theme-background-color4 swiper-container-2-icon"><i class="iconfont icon-camera swiper-container-i"></i></span>
+						<label class="swiper-container-label">HUI</label>
+					</div>
+					<div class="flex-item" onclick="api.openWin({name : 'history',url : './class/history/history_head.html',});">
+						<span class="theme-background-color5 swiper-container-2-icon"><i class="iconfont icon-com swiper-container-i"></i></span>
+						<label class="swiper-container-label">历史的今天</label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="swiper-pagination" style="bottom: 0 !important;"></div>
+	</div>
+	<div class="flexbox-horizontal  title-div vertical-middle title-touch-active">
+		<div class="title-div-flex-item" >分类</div>
+		<span class="title-span" onclick="api.execScript({name: 'index',script: 'showtab3()'});">
+			<label class="title-span-more vertical-middle">更多</label></span>
+	</div>
+
+	<div class="swiper-container-3-div">
+		<div class="swiper-container-3 ">
+			<div class="swiper-wrapper ">
+				<div class="swiper-slide" onclick="openCollect('查询')"><img src="../image/45.png" class="swiper-slide-img" alt="" title="" />
+					<div class="swiper-slide-font">
+						查询
+					</div>
+				</div>
+				<div class="swiper-slide" onclick="openCollect('游戏')"><img src="../image/46.png" class="swiper-slide-img" alt="" title="" />
+					<div class="swiper-slide-font">
+						游戏
+					</div>
+				</div>
+				<div class="swiper-slide" onclick="openCollect('娱乐')"><img src="../image/47.png" class="swiper-slide-img" alt="" title="" />
+					<div class="swiper-slide-font">
+						娱乐
+					</div>
+				</div>
+				<div class="swiper-slide" onclick="openCollect('解惑')"><img src="../image/48.png" class="swiper-slide-img" alt="" title="" />
+					<div class="swiper-slide-font">
+						解惑
+					</div>
+				</div>
+				<div class="swiper-slide" onclick="openCollect('APP')"><img src="../image/49.png" class="swiper-slide-img" alt="" title="" />
+					<div class="swiper-slide-font">
+						APP
+					</div>
+				</div>
+				<div class="swiper-slide" onclick="openCollect('其他')"><img src="../image/50.png" class="swiper-slide-img" alt="" title="" />
+					<div class="swiper-slide-font">
+						其他
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/swiper.min.js"></script>
+<script type="text/javascript">
+	var swiper = new Swiper('.swiper-container', {
+		pagination: '.swiper-pagination',
+		loop: true,
+		autoplay: 3000
+	});
+	var swiper2 = new Swiper('.swiper-container-2', {
+		pagination: '.swiper-pagination',
+		effect: 'coverflow',
+		grabCursor: true,
+		centeredSlides: true,
+		loop: true,
+		slidesPerView: 'auto',
+		coverflow: {
+			rotate: 50,
+			stretch: 0,
+			depth: 100,
+			modifier: 1,
+			slideShadows: true
+		}
+	});
+	var swiper3 = new Swiper('.swiper-container-3', {
+		slidesPerView: 3,
+		spaceBetween: 10,
+		freeMode: true,
+		loop: true
+	});
+	apiready = function() {
+		//			Zepto(function($) {
+		//			var bodyH = $("body").height();
+		//			$(".H-overflow-hidden").css("height", (bodyH - 180) + "px");
+		//			});
+	};
+	function openCollect(classify){
+		api.openWin({name : 'collectClass_head',url : './collectClass_head.html', pageParam: {classify: classify}});
+	}
+</script>
+
+</html>

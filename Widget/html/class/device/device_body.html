@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../../css/aui.css" />
+		<style type="text/css">
+			.aui-list-view-cell:active {
+				background: #f4f4f4;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="aui-content">
+			<ul class="aui-list-view">
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode onclick="api.toast({msg: api.appId});">
+					<div class="aui-arrow-right">
+						获取应用ID
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode onclick="api.toast({msg: api.appName});">
+					<div class="aui-arrow-right">
+						获取应用在桌面显示名称
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode onclick="api.toast({msg: api.appVersion});">
+					<div class="aui-arrow-right">
+						获取应用版本号
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode onclick="api.toast({msg: api.systemType});">
+					<div class="aui-arrow-right">
+						获取系统类型
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode onclick="api.toast({msg: api.systemVersion});">
+					<div class="aui-arrow-right">
+						获取手机平台的系统版本
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode onclick="api.toast({msg: api.version});">
+					<div class="aui-arrow-right">
+						获取引擎版本信息
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode onclick="api.toast({msg: api.deviceId});">
+					<div class="aui-arrow-right">
+						获取设备唯一标识
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode onclick="api.toast({msg: api.deviceToken});">
+					<div class="aui-arrow-right">
+						获取IOS中用于推送的Token
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode onclick="api.toast({msg: api.deviceModel});">
+					<div class="aui-arrow-right">
+						获取设备型号
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode onclick="api.toast({msg: api.deviceName});">
+					<div class="aui-arrow-right">
+						获取设备名称
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode onclick="api.toast({msg: api.operator});">
+					<div class="aui-arrow-right">
+						获取运营商名称
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode onclick="api.toast({msg: api.connectionType});">
+					<div class="aui-arrow-right">
+						获取当前网络连接类型
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode onclick="api.toast({msg: api.fullScreen});">
+					<div class="aui-arrow-right">
+						判断应用是否全屏
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode onclick="api.toast({msg: api.screenWidth});">
+					<div class="aui-arrow-right">
+						获取屏幕分辨率宽
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode onclick="api.toast({msg: api.screenHeight});">
+					<div class="aui-arrow-right">
+						获取屏幕分辨率高
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode onclick="api.toast({msg: api.winName});">
+					<div class="aui-arrow-right">
+						获取当前window名称
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode onclick="api.toast({msg: api.winWidth});">
+					<div class="aui-arrow-right">
+						获取当前window宽度
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode onclick="api.toast({msg: api.winHeight});">
+					<div class="aui-arrow-right">
+						获取当前window高度
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode onclick="api.toast({msg: api.frameName});">
+					<div class="aui-arrow-right">
+						获取当前frame名称
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode onclick="api.toast({msg: api.frameWidth});">
+					<div class="aui-arrow-right">
+						获取当前frame宽度
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode onclick="api.toast({msg: api.frameHeight});">
+					<div class="aui-arrow-right">
+						获取当前frame高度
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode onclick="api.toast({msg: api.pageParam});">
+					<div class="aui-arrow-right">
+						获取上一前页面传递参数
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode onclick=" api.toast({msg: api.wgtParam});">
+					<div class="aui-arrow-right">
+						获取widget参数
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode onclick="api.toast({msg: api.appParam});">
+					<div class="aui-arrow-right">
+						当应用被第三方应用打开时，获取传递过来的参数
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode onclick="api.toast({msg: api.wgtRootDir});">
+					<div class="aui-arrow-right">
+						获取widget网页包的根目录
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode onclick=" api.toast({msg: api.fsDir});">
+					<div class="aui-arrow-right">
+						获取fs://协议对应地真实目录
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode onclick="api.toast({msg: api.cacheDir});">
+					<div class="aui-arrow-right">
+						获取cache://协议对应的真实目录
+					</div>
+				</li>
+			</ul>
+		</div>
+	</body>
+  	<script type="text/javascript" src="../../../script/api.js"></script>
+	<script type="text/javascript"></script>
+</html>

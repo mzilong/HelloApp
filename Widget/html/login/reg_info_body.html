@@ -1,0 +1,198 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont/iconfont.css" />
+		<style type="text/css">
+			html, body {
+				background: #efeff4;
+				background: url(../../image/login_bg.jpg) no-repeat left top;
+				background-size: cover;
+				-webkit-background-size: cover;
+			}
+			body {
+			}
+			.top-area {
+			}
+			.logo {
+				height: 30px;
+				display: -webkit-box;
+				-webkit-box-orient: horizontal;
+				-webkit-box-pack: center;
+				-webkit-box-align: center;
+				display: box;
+				box-orient: horizontal;
+				box-pack: center;
+				box-align: center;
+			}
+			.login-area {
+				text-align: center;
+			}
+			.login-area img {
+				width: 75px;
+				height: 75px;
+				border-radius: 8px;
+				-webkit-border-radius: 8px;
+			}
+			.login-area p {
+				padding: 5px 0 0 0;
+				font-size: 15px;
+				color: #fff;
+			}
+			.form {
+				padding: 0 30px;
+			}
+			.form-row {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-orient: horizontal;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				width: 100%;
+				padding: 15px;
+				position: relative;
+			}
+			.form-row:after {
+				content: "";
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
+				right: 0px;
+				border-bottom: 1px solid #3e8dce;
+				-webkit-transform: scaleY(.5);
+				-webkit-transform-origin: 0 0;
+			}
+			.form-row span {
+				display: block;
+				width: 50px;
+				color: rgba(99,99,99,0.7);
+			}
+			.form-row span {
+				font-size: 22px;
+			}
+			.form-row .input-box {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+				padding-top: 2px;
+			}
+			.form-row .input-box input[type=text], .form-row .input-box textarea {
+				background: rgba(0,0,0,0);
+				border: none;
+				outline: none;
+				padding: 4px;
+				margin: 0;
+			}
+			.form-row .input-box textarea {
+				height: 120px;
+				overflow-y: scroll;
+			}
+			.form-btn {
+				padding: 30px 30px 15px 30px;
+			}
+			.aui-btn-4385f6 {
+				background: #4385f6 !important;
+				color: #f9f9f9 !important;
+				border: none;
+				outline: none;
+			}
+			.form-btn button:active {
+				background: rgba(67,133,246,0.8) !important;
+			}
+			.getcode {
+				color: #52ace5;
+				line-height: 33px;
+			}
+			.showpwd {
+				color: #52ace5;
+				line-height: 33px;
+				font-size: 20px;
+			}
+			.form-o {
+				padding: 0 30px;
+			}
+			.form-o span {
+				float: left;
+				color: #f9f9f9;
+				font-size: 13px;
+			}
+			.input-box label {
+				color: #52ace5;
+				display: inline-block;
+				margin-left: 10px;
+				vertical-align: middle;
+			}
+			.input-box input[type=radio] {
+				vertical-align: middle;
+				margin: 0 !important;
+				border: 1px solid #3e8dce;
+				background: rgba(0,0,0,0);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="top-area">
+			<div class="logo"></div>
+			<div class="form">
+				<div class="form-area">
+					<div class="form-row">
+						<span class="iconfont icon-liunicheng">&nbsp;&nbsp;|</span>
+						<div class="input-box">
+							<input type="text" id="nickname" name="nickname" value="" placeholder="请输入昵称" />
+						</div>
+					</div>
+					<div class="form-row">
+						<span class="iconfont icon-xingbie">&nbsp;&nbsp;|</span>
+						<div class="input-box">
+							<input class="aui-radio aui-radio-info" type="radio" id="gn" name="gender" checked="">
+							<label>男</label>
+						</div>
+						<div class="input-box">
+							<input class="aui-radio aui-radio-info" type="radio" id="gv" name="gender">
+							<label>女</label>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="input-box">
+							<textarea  name="des" id="des" value="" placeholder="一句话描述自己..."></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-btn">
+				<button class="aui-btn aui-btn-4385f6 aui-btn-block" id="login-btn" tapmode onclick=" next()">
+					下一步
+				</button>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript">
+		var next = function() {
+			var gend = '男';
+			if ($api.byId('gn').checked) {
+				gend = '男'
+			} else {
+				gend = '女'
+			}
+			api.openWin({
+				name : 'reg_card_head',
+				url : './reg_card_head.html',
+				pageParam : {
+					phone : api.pageParam.phone,
+					password : api.pageParam.password,
+					path:api.pageParam.path,
+					nickname : $api.val($api.byId("nickname")),
+					gender : gend,
+					des : $api.val($api.byId("des"))
+				}
+			});
+		}
+	</script>
+</html>

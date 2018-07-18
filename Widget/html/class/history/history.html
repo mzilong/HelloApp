@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<style>
+			.p {
+				padding-left: 10px;
+				padding-right: 10px;
+				font-size: 1.2rem;
+			}
+			.flexbox-horizontal {
+				display: box;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-orient: horizontal;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				width: 100%;
+				-webkit-flex-direction: row;
+				flex-direction: row;
+				box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+			}
+			.div-1 {
+				margin-bottom: 10px;
+			}
+			.textbox {
+				appearance: none !important;
+				-webkit-appearance: none !important;
+				outline: 0;
+				-webkit-appearance: none;
+				-webkit-tap-highlight-color: transparent;
+				-webkit-overflow-scrolling: touch;
+				vertical-align: middle;
+				font-size: 1.0rem;
+				box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+				border-width: 0;
+				outline-width: 0;
+				padding: 12px;
+			}
+			.span {
+				padding-right: 10px;
+				background-color: white;
+			}
+			.span-i {
+				font-size: 1.6rem;
+				color: black;
+			}
+			.vertical-middle {
+				display: -webkit-box;
+				-webkit-box-orient: horizontal;
+				-webkit-box-align: center;
+				display: box;
+				box-orient: horizontal;
+				box-align: center;
+			}
+			.flex-item {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+				box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+			}
+			.iconfont {
+				font-family: "iconfont" !important;
+				font-size: 16px;
+				font-style: normal;
+				-webkit-font-smoothing: antialiased;
+				-webkit-text-stroke-width: 0.2px;
+				-moz-osx-font-smoothing: grayscale;
+			}
+			@font-face { font-family: 'iconfont'; src: url('../../../css/Hui.ttf') format('truetype'); }
+			.icon-time:before {
+				content: "\f030";
+			}
+		</style>
+	</head>
+	<body>
+		<p class="p">
+			请选择日期
+		</p>
+		<div class="flexbox-horizontal div-1">
+			<input type="text" id="date" class="textbox vertical-middle flex-item " placeholder="请选择您要的日期" readonly="readonly" tapmode=""  />
+			<span class="vertical-middle span" onclick="search()"><i class="iconfont vertical-middle icon-time"></i></span>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../../script/api.js"></script>
+	<script type="text/javascript">
+		apiready = function() {
+			api.parseTapmode();
+		};
+		function search() {
+			api.openPicker({
+				type : 'date_time',
+				date : new Date(),
+				title : '选择时间'
+			}, function(ret, err) {
+				if (ret) {
+					var date1=ret.year+'-'+ret.month+'-'+ret.day;
+					$api.val($api.byId('date'),date1);
+					api.openWin({
+						name : 'historydetail_head',
+						url : './historydetail_head.html',
+						pageParam : {
+							year: ret.year,
+							day : ret.day,
+							month : ret.month
+						}
+					});
+				} else {
+					alert(JSON.stringify(err));
+				}
+			});
+		}
+	</script>
+</html>

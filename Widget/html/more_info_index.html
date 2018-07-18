@@ -1,0 +1,166 @@
+﻿<!doctype html>
+<html class="H-theme-background-color-transparent">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>Hui</title>
+		<link href="../css/api.css" rel="stylesheet" type="text/css" />
+		<style type="text/css">
+		 html,body{
+            background: transparent;
+        }
+			@font-face {
+				font-family: 'iconfont';
+				src: url('../css/Hui.ttf') format('truetype');
+			}
+			.iconfont {
+				font-family: "iconfont" !important;
+				font-size: 16px;
+				font-style: normal;
+				-webkit-font-smoothing: antialiased;
+				-webkit-text-stroke-width: 0.2px;
+				-moz-osx-font-smoothing: grayscale;
+			}
+		
+
+				.icon-log:before { content: "\f052"; }
+   			.icon-wangge:before { content: "\f164"; }
+   			.icon-official:before { content: "\f078"; }
+   			.icon-donate:before { content: "\f076"; }
+			.dot {
+				font-size: 1.0 rem;
+			}
+
+			.vertical-middle {
+				display: -webkit-box;
+				-webkit-box-orient: horizontal;
+				-webkit-box-align: center;
+				display: box;
+				box-orient: horizontal;
+				box-align: center;
+			}
+			.more-info-menu {
+				width: 110px;
+			
+				position: absolute;
+				background-color: white;
+				padding-top: 5px;
+				padding-bottom: 5px;
+				border-radius: 3px;
+				-webkit-border-radius: 3px;
+				z-index: 10;
+				right: 4px;
+				-webkit-transform-origin: 150px 0;
+			}
+			.show-menu-text-list {
+				background-color: white;
+				display: box;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-orient: horizontal;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				width: 100%;
+				-webkit-flex-direction: row;
+				flex-direction: row;
+				box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+			}
+			.touch-active {
+			}
+			.touch-active:active {
+				background: #f4f4f4;
+			}
+			.show-menu-span {
+				height: 44px;
+				display: block;
+				margin-left: 10px;
+			}
+			.show-menu-i1 {
+				font-size: 1rem;
+				color: #52ace5;
+			}
+			.show-menu-i2 {
+				font-size: 1rem;
+				color: #ff7f8a;
+			}
+			.show-menu-i3 {
+				font-size: 1rem;
+				color: #4db7ad;
+			}
+			.show-menu-i4 {
+				font-size: 1rem;
+				color: #d9534f;
+			}
+			.show-menu-flex-item {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+				box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+				padding-left: 10px;
+				padding-right: 10px;
+				font-size: 1 rem;
+				padding-top: 0px;
+				padding-bottom: 8px;
+				color: #444;
+			}
+			.shadow{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            z-index: 1;
+        }
+		</style>
+	</head>
+	<body >
+	 <div class="shadow" tapmode onclick="api.closeFrame();"></div>
+
+	
+		<div class="more-info-menu">
+			<div tapmode="" onclick="api.toast({msg:'谢谢您热心的支持！功能开发中...'});" class="show-menu-text-list vertical-middle touch-active">
+				<span class="show-menu-span"><i class="iconfont icon-log show-menu-i1 vertical-middle"></i></span>
+				<div class="show-menu-flex-item">
+					更新记录
+				</div>
+			</div>
+			<div tapmode="" onclick="api.toast({msg:'谢谢您热心的支持！功能开发中...'});" class="show-menu-text-list vertical-middle touch-active">
+				<span class="show-menu-span"><i class="iconfont icon-wangge show-menu-i2 vertical-middle"></i></span>
+				<div class="show-menu-flex-item ">
+					目录说明
+				</div>
+			</div>
+			<div tapmode="" onclick="api.toast({msg:'谢谢您热心的支持！功能开发中...'});" class="show-menu-text-list vertical-middle touch-active">
+				<span class="show-menu-span"><i class="iconfont icon-official show-menu-i3 vertical-middle"></i></span>
+				<div class="show-menu-flex-item ">
+					技术支持
+				</div>
+			</div>
+			<div tapmode="" onclick="api.toast({msg:'谢谢您热心的支持！功能开发中...'});" class="show-menu-text-list vertical-middle touch-active">
+				<span class="show-menu-span"><i class="iconfont icon-donate show-menu-i4 vertical-middle"></i></span>
+				<div class="show-menu-flex-item ">
+					友情捐赠
+				</div>
+			</div>
+		</div>
+	
+	<script type="text/javascript" src="../script/api.js" ></script>
+	<script type="text/javascript" src="../script/zepto.min.js"></script>
+	<script type="text/javascript">
+		function showShare() {
+			api.closeFrame();
+		}
+
+		apiready = function() {
+//		Zepto(function() {
+//				$(".more-info-menu").css("top", api.pageParam.headerY);
+//		});
+		
+		}
+	</script>
+	</body>
+</html>

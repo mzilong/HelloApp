@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>APP</title>
+    <link rel="stylesheet" type="text/css" href="../../../css/aui.css" />
+</head>
+<style>
+img.avatar {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+}
+.boxCont{
+    position:relative;
+}
+</style>
+<body>
+    <div class="aui-content">
+        <ul class="aui-waterfall" id="aui-waterfall">
+            </ul>
+
+
+
+            <script id="evaluationTemp" type="text/x-dot-template">
+              {{ for(var x in it) { }}
+               <li>
+               <div class="aui-waterfall-header">
+                   <img src="{{= it[x].picUrl }}" />
+               </div>
+              <div class="aui-waterfall-body">
+                <span   onclick=alick("{{= it[x].url }}") >   {{= it[x].title }} </span>
+              </div>
+              <div class="aui-waterfall-footer">
+                  <span class="aui-text-info">
+                      {{= it[x].ctime }}
+                  </span>
+                  <span class="aui-pull-right">
+                      <i class="aui-iconfont aui-icon-likefill aui-text-warning"></i>
+                  </span>
+              </div>
+              </li>
+              {{ } }}
+            </script>
+
+
+    </div>
+</body>
+<script type="text/javascript" src="../../../script/api.js" ></script>
+<script type="text/javascript" src="../../../script/aui-waterfall.js" ></script>
+	<script type="text/javascript" src="../../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../../script/doT.min.js"></script>
+<script type="text/javascript">
+$aui.waterfall($api.byId("aui-waterfall"),{
+    col:2,//列数
+    padding:10,//容器内边距
+    space:10//列间距
+});
+function alick(url)
+{
+
+  api.openApp({
+    uri : url
+  }, function(ret, err) {
+    if (ret) {
+
+    } else {
+      alert(JSON.stringify(err));
+    }
+  });
+
+
+}
+  apiready = function() {
+    api.parseTapmode();
+    api.showProgress({
+      style : 'default',
+      animationType : 'fade',
+      title : '努力加载中...',
+      text : '先喝杯茶...',
+      modal : true
+    });
+    api.ajax({
+      url : 'http://api.tianapi.com/meinv/?key=3ebe9a60ee8c5b57e681d18b864cf3f3&num=10', //如果地址访问不到会请求出错，请填写自己的接口地址
+      method : 'get',
+      cache : 'false',
+      timeout : 30,
+      dataTpye : 'json',
+      data : {
+      }
+    }, function(ret, err) {
+      if (ret) {
+        api.hideProgress();
+        if (ret.code == '200') {
+          var evaluationData = ret.newslist;
+          var evaluation = doT.template($api.dom('#evaluationTemp').innerHTML);
+          $api.dom('#aui-waterfall').innerHTML = evaluation(evaluationData);
+        } else {
+          api.toast({
+            msg : ret.msg
+          });
+        }
+      } else {
+        api.hideProgress();
+        alert(JSON.stringify(err));
+      }
+    });
+    api.setRefreshHeaderInfo({
+      visible : true,
+      loadingImg : 'widget://image/refresh.png',
+      bgColor : '#ccc',
+      textColor : '#fff',
+      textDown : '下拉刷新...',
+      textUp : '松开刷新...',
+      showTime : true
+    }, function(ret, err) {
+      api.showProgress({
+        style : 'default',
+        animationType : 'fade',
+        title : '努力加载中...',
+        text : '先喝杯茶...',
+        modal : true
+      });
+      api.ajax({
+        url : 'http://api.tianapi.com/meinv/?key=3ebe9a60ee8c5b57e681d18b864cf3f3&num=10', //如果地址访问不到会请求出错，请填写自己的接口地址
+        method : 'get',
+        cache : 'false',
+        timeout : 30,
+        dataTpye : 'json',
+        data : {
+        }
+      }, function(ret, err) {
+      api.hideProgress();
+        if (ret) {
+          if (ret.code == '200') {
+            var evaluationData = ret.newslist;
+            var evaluation = doT.template($api.dom('#evaluationTemp').innerHTML);
+            $api.dom('#aui-waterfall').innerHTML = evaluation(evaluationData);
+          } else {
+            api.toast({
+              msg : ret.msg
+            });
+          }
+        } else {
+          alert(JSON.stringify(err));
+        }
+      });
+      api.refreshHeaderLoadDone();
+    });
+  };
+  function getLocalTime(nS) {
+    return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/, ' ');
+  }
+
+</script>
+</html>

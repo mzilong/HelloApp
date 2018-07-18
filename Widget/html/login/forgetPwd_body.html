@@ -1,0 +1,401 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont/iconfont.css" />
+		<style type="text/css">
+			html, body {
+				background: #efeff4;
+				background: url(../../image/login_bg.jpg) no-repeat left top;
+				background-size: cover;
+				-webkit-background-size: cover;
+			}
+			body {
+			}
+			.top-area {
+			}
+			.logo {
+				height: 30px;
+				display: -webkit-box;
+				-webkit-box-orient: horizontal;
+				-webkit-box-pack: center;
+				-webkit-box-align: center;
+				display: box;
+				box-orient: horizontal;
+				box-pack: center;
+				box-align: center;
+			}
+			.login-area {
+				text-align: center;
+			}
+			.login-area img {
+				width: 75px;
+				height: 75px;
+				border-radius: 8px;
+				-webkit-border-radius: 8px;
+			}
+			.login-area p {
+				padding: 5px 0 0 0;
+				font-size: 15px;
+				color: #fff;
+			}
+			.form {
+				padding: 0 30px;
+			}
+			.form-row {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-orient: horizontal;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				width: 100%;
+				padding: 15px;
+				position: relative;
+			}
+			.form-row:after {
+				content: "";
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
+				right: 0px;
+				border-bottom: 1px solid #3e8dce;
+				-webkit-transform: scaleY(.5);
+				-webkit-transform-origin: 0 0;
+			}
+			.form-row span {
+				display: block;
+				width: 50px;
+				color: rgba(255,255,255,0.7);
+			}
+			.form-row span {
+				font-size: 22px;
+			}
+			.form-row .input-box {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+				padding-top: 2px;
+			}
+			.form-row .input-box input {
+				background: rgba(0,0,0,0);
+				border: none;
+				outline: none;
+				padding: 4px;
+				margin: 0;
+			}
+			.form-btn {
+				padding: 30px 30px 15px 30px;
+			}
+			.aui-btn-4385f6 {
+				background: #4385f6 !important;
+				color: #f9f9f9 !important;
+				border: none;
+				outline: none;
+			}
+			.form-btn button:active {
+				background: rgba(67,133,246,0.8) !important;
+			}
+			.getcode {
+				color: #fff;
+				line-height: 33px;
+			}
+			.showpwd {
+				color: #fff;
+				line-height: 33px;
+				font-size: 20px;
+			}
+			.form-o {
+				padding: 0 30px;
+			}
+			.form-o span {
+				float: left;
+				color: #f9f9f9;
+				font-size: 13px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="top-area">
+			<div class="logo"></div>
+			<div class="form">
+				<div class="form-area">
+					<div class="form-row">
+						<span class="iconfont icon-phone" style="color: #999;">&nbsp;&nbsp;|</span>
+						<div class="input-box">
+							<input type="number" id="phone" name="phone" value="" placeholder="请输入手机号" />
+						</div>
+						<p class="getcode" id="getcode" style="color: #52ace5;">
+							获取验证码
+						</p>
+					</div>
+					<div class="form-row">
+						<span class="iconfont icon-yanzhengma" style="color: #999;">&nbsp;&nbsp;|</span>
+						<div class="input-box">
+							<input type="number" id="vcode" name="vcode" value="" placeholder="请输入验证码" />
+						</div>
+					</div>
+					<div class="form-row">
+						<span class="iconfont icon-password" style="color: #999;">&nbsp;&nbsp;|</span>
+						<div class="input-box">
+							<input type="password" id="password1" name="phone" value="" onpaste="return false" oncontextmenu="return false" oncopy="return false" oncut="return false"
+							onkeyup="value=value.replace(/[\W]/g,'') "	 placeholder="请输入新密码" />
+						</div>
+						<p class="iconfont icon-yey2 showpwd" onclick="ShowHidePW()" style="color: #52ace5;"></p>
+					</div>
+					<div class="form-row">
+						<span class="iconfont icon-password" style="color: #999;">&nbsp;&nbsp;|</span>
+						<div class="input-box">
+							<input type="password" name="phone" id="password2" value="" onpaste="return false" oncontextmenu="return false" oncopy="return false" oncut="return false"
+							onkeyup="value=value.replace(/[\W]/g,'') " 	placeholder="请再次输入新密码" />
+						</div>
+						<p class="iconfont icon-yey2 showpwd" onclick="ShowHidePW2()"  style="color: #52ace5;"></p>
+					</div>
+				</div>
+			</div>
+			<div class="form-btn">
+				<button class="aui-btn aui-btn-4385f6 aui-btn-block" id="login-btn" tapmode onclick="Updatebtn()">
+					提交修改
+				</button>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript">
+		var pwState = false;
+		var theEl;
+		var ShowHidePW = function() {
+			if (!pwState) {
+				theEl = document.getElementById("password1");
+				theEl.type = "text";
+				pwState = true;
+			} else {
+				theEl = document.getElementById("password1");
+				theEl.type = "password";
+				pwState = false;
+			}
+		}
+		var pwState2 = false;
+		var theEl2;
+		var ShowHidePW2 = function() {
+			if (!pwState2) {
+				theEl2 = document.getElementById("password2");
+				theEl2.type = "text";
+				pwState2 = true;
+			} else {
+				theEl2 = document.getElementById("password2");
+				theEl2.type = "password";
+				pwState2 = false;
+			}
+		}
+		// 声明sendSms全局变量
+		var smsVerify = null;
+		// 是否发送验证码的标识
+		var isPushCode = false;
+		// 是否已智能验证
+		var V = false;
+		var T = true;
+		// 发送等待句柄
+		var flag = null;
+		// 120s发送一次
+		var times = 120000;
+		var Updatebtn = function() {
+			var pwd = $api.byId('password1').value;
+			var phone = $api.byId('phone').value;
+			var vcode = $api.byId('vcode').value;
+			if ($api.trim(phone) == "") {
+				api.toast({
+					msg : '手机号不能为空'
+				});
+				$api.byId('phone').focus();
+			} else if (!checkPhone($api.trim(phone))) {
+				api.toast({
+					msg : '您输入的手机号码不正确'
+				});
+				$api.byId('phone').focus();
+			} else if ($api.trim(vcode) == "") {
+				api.toast({
+					msg : '验证码不能为空'
+				});
+				$api.byId('vcode').focus();
+			} else {
+				if (V) {
+					clearInterval(flag);
+					changePassword(pwd);
+				} else {
+					// 1、判断验证码是否正确：
+					smsVerify.verify({
+						phone : $api.trim(phone),
+						code : $api.trim(vcode)
+					}, function(ret, err) {
+						if (ret.status) {
+							clearInterval(flag);
+							changePassword(pwd);
+						} else {
+							api.toast({
+								msg : '验证码错误'
+							});
+							document.getElementById("vcode").focus();
+						}
+					});
+				}
+			}
+		}
+		function checkPhone(phone) {
+			var res = !!phone.match(/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/);
+			return res;
+		}
+		Zepto(function($) {
+			// 点击发送按钮发送验证码
+			$("#getcode").on('click',(function() {
+				var $phone = $("#phone");
+				var $vcode = $("#vcode");
+				var $btnObj = $(this);
+				if ($.trim($phone.val()) == "") {
+					api.toast({
+						msg : '手机号不能为空'
+					});
+					$phone.focus();
+				} else if (!checkPhone($.trim($phone.val()))) {
+					$phone.focus();
+					api.toast({
+						msg : '您输入的手机号码不正确'
+					});
+				} else {
+					var query = api.require('query');
+					var model = api.require('model');
+					query.createQuery(function(ret, err) {
+						if (ret && ret.qid) {
+							var queryId = ret.qid;
+							query.whereEqual({
+								qid : queryId,
+								column : 'username',
+								value : $phone.val()
+							});
+							model.findAll({
+								class : "user",
+								qid : queryId
+							}, function(ret, err) {
+								if (ret) {
+									if (ret.length == 0) {
+										api.toast({
+											msg : '该用户名不存在！'
+										});
+									} else {
+										if (!isPushCode && times == 120000) {
+											api.toast({
+												msg : '验证码发送中....',
+												duration : 10000
+											});
+											smsVerify.sms({
+												phone : $.trim($phone.val()),
+												country : "86"
+											}, function(ret, err) {
+												if (ret.smart == true) {// 安卓版特有功能 智能验证
+													api.toast({
+														msg : '智能验证成功：此号码已验证,无需填写验证码！'
+													});
+													document.getElementById("vcode").type = "text";
+													$api.val($api.byId('vcode'), '****');
+													$api.attr($api.byId('vcode'), 'readonly', 'true');
+													V = true;
+												} else {
+													if (ret.status) {
+														api.toast({
+															msg : '短信已发送，请注意查收！'
+														});
+														// 设置120秒才能发送一次
+														flag = setInterval(function() {
+															if (times == 0) {
+																clearInterval(flag);
+																$btnObj.text('短信验证');
+																isPushCode = false;
+																times = 120000;
+															} else {
+																isPushCode = true;
+																times = times - 1000;
+																$btnObj.text("" + (times / 1000) + 'S');
+															}
+														}, 1000);
+													} else {
+														api.toast({
+															msg : '发送失败，请重试!'
+														});
+													}
+												}
+											});
+										} else {
+											api.toast({
+												msg : "请在" + (times / 1000) + "S后再发送！"
+											});
+										}
+									}
+								}
+							});
+						}
+					});
+				}
+			})
+			);
+		});
+		var changePassword = function(pwd) {
+			var query = api.require('query');
+			var model = api.require('model');
+			query.createQuery(function(ret, err) {
+				if (ret && ret.qid) {
+					var queryId = ret.qid;
+					query.whereEqual({
+						qid : queryId,
+						column : 'username',
+						value :  $api.byId('phone').value
+					});
+					model.findAll({
+						class : "user",
+						qid : queryId
+					}, function(ret, err) {
+						if (ret) {
+							if (ret.length > 0) {
+						
+								model.updateById({
+									class : 'user',
+									id : ret[0].id,   //查询返回的是数组
+									value : {
+										password : pwd
+									}
+								}, function(ret, err) {
+									if (ret) {
+										api.toast({
+											msg : '修改成功'
+										});
+										setTimeout(function() {
+											api.closeWin();
+										}, 1500);
+									} else {
+										alert(JSON.stringify(err));
+									}
+								});
+							}
+						}
+					});
+				}
+			});
+		}
+		apiready = function() {
+			smsVerify = api.require('smsVerify');
+			smsVerify.register(function(ret, err) {
+				if (ret.status) {
+					//api.alert({msg: '注册成功'});
+				} else {
+					api.alert({
+						msg : err.code + ' 注册失败'
+					});
+				}
+			});
+		}
+	</script>
+</html>

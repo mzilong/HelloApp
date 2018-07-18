@@ -1,0 +1,30 @@
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, user-scalable=yes" />
+	<title>棋牌游戏</title>
+	<script src="js/main.js"></script>
+
+</head>
+
+<body style=" background-color:#C89C5C">
+	<div id="C" align="center" top="100px"></div>
+</body>
+<script>
+	function _$(CHOFO, CHOF0) {
+		var CH0F0 = document.getElementById(CHOFO);
+		if (CH0F0 != null) {
+			if (CHOF0 == 0) return CH0F0.style;
+			else if (CHOF0 == 1) return CH0F0.innerHTML;
+		}
+		return CH0F0;
+	}
+	apiready = function() {
+		var s = new Chess().board('gobang', document.body.clientWidth, document.body.clientHeight, document.getElementById('C'));
+
+	}
+</script>
+
+</html>

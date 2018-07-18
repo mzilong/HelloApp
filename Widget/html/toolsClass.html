@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>tools</title>
+		<link rel="stylesheet" type="text/css" href="../css/api.css"/>
+		<style>
+			body {
+				display: box;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-orient: vertical;
+				-webkit-flex-flow: column;
+				flex-flow: column;
+				height: 100%;
+				-webkit-flex-direction: column;
+				flex-direction: column;
+				box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+			}
+			.aui-bar-5cb85c {
+				min-height: 44px;
+				background-color: #5cb85c;
+			}
+			.header-span {
+				height: 44px;
+				position: relative;
+				display: block;
+				float: left;
+				color: white;
+				padding-left: 10px;
+				padding-right: 10px;
+			}
+			.vertical-middle {
+				display: -webkit-box;
+				-webkit-box-orient: horizontal;
+				-webkit-box-align: center;
+				display: box;
+				box-orient: horizontal;
+				box-align: center;
+			}
+			@font-face {
+				font-family: 'iconfont';
+				src: url('../css/Hui.ttf') format('truetype');
+			}
+			.iconfont {
+				font-family: "iconfont" !important;
+				font-size: 16px;
+				font-style: normal;
+				-webkit-font-smoothing: antialiased;
+				-webkit-text-stroke-width: 0.2px;
+				-moz-osx-font-smoothing: grayscale;
+			}
+			.span-icon:before {
+				content: "\f035";
+				font-size: 1 rem;
+			}
+			.icon-dot-more:before {
+				content: "\f098";
+			}
+			.icon-search-list:before {
+				content: "\f120";
+			}
+			.icon-moban:before {
+				content: "\f089";
+			}
+			.icon-reward:before {
+				content: "\f081";
+			}
+			.icon-hot:before {
+				content: "\f097";
+			}
+			.icon-doc:before {
+				content: "\f088";
+			}
+			.icon-log:before {
+				content: "\f052";
+			}
+			.icon-wangge:before {
+				content: "\f164";
+			}
+			.icon-official:before {
+				content: "\f078";
+			}
+			.icon-donate:before {
+				content: "\f076";
+			}
+			.header-title {
+				left: 0;
+				min-height: 44px;
+				font-size: 1.2 rem;
+				position: absolute;
+				width: 100%;
+				padding-left: 38px;
+				box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+				color: white;
+				line-clamp: 1;
+				-webkit-line-clamp: 1;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display: box;
+				display: -webkit-box;
+				word-wrap: break-word;
+				white-space: normal !important;
+				-webkit-box-orient: vertical;
+			}
+			.header-drop-menu {
+				position: relative;
+				display: block;
+				float: right;
+				color: white;
+				padding-left: 5px;
+				padding-right: 5px;
+				z-index: 1000;
+			}
+			.dot {
+				font-size: 1.0 rem;
+			}
+			.header-span2 {
+				position: relative;
+				display: block;
+				float: right;
+				color: white;
+				padding-left: 5px;
+				padding-right: 5px;
+				z-index: 1000;
+			}
+			.header-span2-i {
+				font-size: 1.6 rem;
+			}
+			.flexbox-horizontal {
+				display: box;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-orient: horizontal;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				width: 100%;
+				-webkit-flex-direction: row;
+				flex-direction: row;
+				box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+			}
+			.main {
+				position: relative;
+				overflow: hidden;
+				-webkit-overflow-scrolling: touch;
+				overflow: scroll;
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+				box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+			}
+			.padding-vertical-bottom {
+				padding-bottom: 5px;
+			}
+			.main-grid {
+				position: relative;
+				overflow: hidden;
+				clear: both;
+				overflow: auto;
+			}
+			.main-grid-div {
+				clear: both;
+				width: 100%;
+				display: table;
+				box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+			}
+			.main-grid-cell {
+				display: table-cell;
+				transform-style: preserve-3d;
+				-webkit-transform-style: preserve-3d;
+				float: left;
+				box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+				width: 25%;
+				display: -webkit-box;
+				-webkit-box-orient: horizontal;
+				-webkit-box-pack: center;
+				-webkit-box-align: center;
+				display: box;
+				box-orient: horizontal;
+				box-pack: center;
+				box-align: center;
+				background-color: white;
+				padding-top: 10px;
+				padding-bottom: 10px;
+				min-height: 80px;
+				position: relative;
+			}
+			.border-horizontal-right {
+				position: relative;
+				overflow: hidden;
+			}
+			.border-horizontal-right:after {
+				display: block;
+				content: '';
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				transform-origin: 0 0;
+				transform: scale(1);
+				-webkit-transform-origin: 0 0;
+				-webkit-transform: scale(1);
+				pointer-events: none;
+				border-right: 1px solid #e6e6e6;
+				border-bottom: 1px solid #e6e6e6;
+			}
+			.main-align-center {
+				text-align: center;
+			}
+			.main-icon {
+				height: 44px;
+				display: -webkit-box;
+				-webkit-box-orient: horizontal;
+				-webkit-box-pack: center;
+				-webkit-box-align: center;
+				display: box;
+				box-orient: horizontal;
+				box-pack: center;
+				box-align: center;
+				border-radius: 50%;
+				-webkit-border-radius: 50%;
+				margin-left: auto;
+				margin-right: auto;
+				font-size: 1.5 rem;
+				font-weight: 600;
+				color: white;
+				height: 42px;
+				width: 42px;
+				line-height: 42px;
+			}
+			.main-background-337ab7 {
+				background-color: #337ab7;
+			}
+			.main-background-d9534f {
+				background-color: #d9534f;
+			}
+			.main-background-f0ad4e {
+				background-color: #f0ad4e;
+			}
+			.main-background-5cb85c {
+				background-color: #5cb85c;
+			}
+			.main-background-eee {
+				background-color: #eee;
+			}
+			.main-background-52ace5 {
+				background-color: #52ace5;
+			}
+			.main-background-ff7f8a {
+				background-color: #ff7f8a;
+			}
+			.main-background-3c4146 {
+				background-color: #3c4146;
+			}
+			.main-background-ffa977 {
+				background-color: #ffa977;
+			}
+			.main-label {
+				display: block;
+				font-size: 0.8rem;
+				margin-top: 5px;
+				color: #666;
+			}
+			.cell-touch-active:active {
+				background: #f4f4f4;
+			}
+		</style>
+	</head>
+	<body>
+		<div >
+			<div class="padding-vertical-bottom"></div>
+			<div class="main-grid">
+				<div class="main-grid-div">
+					<div tapmode="" onclick="api.openWin({name: 'blob',url: './class/blob/blob.html'})"  class="main-grid-cell border-horizontal-right cell-touch-active" >
+						<div class="main-align-center">
+							<span class="main-icon  main-background-337ab7">S</span>
+							<label class="main-label">水滴效果</label>
+						</div>
+					</div>
+					<div tapmode="" onclick="api.openWin({name: 'Chess',url: './class/Chess/Chess.html',})" class="main-grid-cell border-horizontal-right cell-touch-active">
+						<div class="main-align-center">
+							<span class="main-icon  main-background-337ab7">X</span>
+							<label class="main-label">下象棋</label>
+						</div>
+					</div>
+					<div tapmode="" onclick="api.openWin({name: 'gobang',url: './class/gobang/gobang.html',bounces : false})" class="main-grid-cell border-horizontal-right cell-touch-active">
+						<div class="main-align-center">
+							<span class="main-icon  main-background-337ab7">W</span>
+							<label class="main-label">五子棋</label>
+						</div>
+					</div>
+					<div tapmode="" onclick="api.openWin({name: 'flappy',url: './class/flappy/flappy.html',})" class="main-grid-cell border-horizontal-right cell-touch-active">
+						<div class="main-align-center">
+							<span class="main-icon  main-background-337ab7">B</span>
+							<label class="main-label">变态版Flappy</label>
+						</div>
+					</div>
+					<div tapmode=""  class="main-grid-cell border-horizontal-right cell-touch-active" onclick="api.openWin({name : 'IdCard_head',url : './class/IdCard_head.html',});">
+						<div class="main-align-center">
+							<span class="main-icon  main-background-d9534f">S</span>
+							<label class="main-label">身份证查询</label>
+						</div>
+					</div>
+					<div tapmode=""  class="main-grid-cell border-horizontal-right cell-touch-active" onclick="api.openWin({name : 'phone_head',url : './class/phone_head.html',});">
+						<div class="main-align-center">
+							<span class="main-icon  main-background-d9534f">S</span>
+							<label class="main-label">手机查询</label>
+						</div>
+					</div>
+					<div tapmode=""  class="main-grid-cell border-horizontal-right cell-touch-active" onclick="api.openWin({name : 'ip_head',url : './class/ip_head.html',});">
+						<div class="main-align-center">
+							<span class="main-icon  main-background-d9534f">I</span>
+							<label class="main-label">IP查询</label>
+						</div>
+					</div>
+					<div tapmode=""  class="main-grid-cell border-horizontal-right cell-touch-active" onclick="api.openWin({name : 'bankCard_head',url : './class/bankCard_head.html',});">
+						<div class="main-align-center">
+							<span class="main-icon  main-background-d9534f">Y</span>
+							<label class="main-label">银行卡查询</label>
+						</div>
+					</div>
+					<div tapmode=""  class="main-grid-cell border-horizontal-right cell-touch-active" onclick="api.openWin({name : 'exchange_head',url : './class/CurrencyConversion/exchange_head.html',});">
+						<div class="main-align-center">
+							<span class="main-icon  main-background-f0ad4e">H</span>
+							<label class="main-label">汇率转换</label>
+						</div>
+					</div>
+					<div tapmode=""  class="main-grid-cell border-horizontal-right cell-touch-active" onclick="api.openWin({name : 'classification_head',url : './class/Classification/classification_head.html',});">
+						<div class="main-align-center">
+							<span class="main-icon  main-background-f0ad4e">H</span>
+							<label class="main-label">火星文转换</label>
+						</div>
+					</div>
+					<div tapmode=""  class="main-grid-cell border-horizontal-right cell-touch-active" onclick="api.openWin({name : 'QQ_head',url : './class/QQTest/QQ_head.html',});">
+						<div class="main-align-center">
+							<span class="main-icon  main-background-f0ad4e">Q</span>
+							<label class="main-label">QQ测吉凶</label>
+						</div>
+					</div>
+					<div tapmode=""  class="main-grid-cell border-horizontal-right cell-touch-active" onclick="api.openWin({name : 'CrazyDream_head',url : './class/CrazyDream/CrazyDream_head.html',});">
+						<div class="main-align-center">
+							<span class="main-icon  main-background-f0ad4e">Z</span>
+							<label class="main-label">周公解梦</label>
+						</div>
+					</div>
+					<div tapmode=""  class="main-grid-cell border-horizontal-right cell-touch-active" onclick="api.openWin({name : 'Joke_head',url : './class/Joke/Joke_head.html',});">
+						<div class="main-align-center">
+							<span class="main-icon  main-background-5cb85c">X</span>
+							<label class="main-label">笑话大全</label>
+						</div>
+					</div>
+					<div tapmode=""  class="main-grid-cell border-horizontal-right cell-touch-active" onclick="api.openWin({name : 'BrainSharp_head',url : './class/BrainSharp/BrainSharp_head.html',});">
+						<div class="main-align-center">
+							<span class="main-icon  main-background-5cb85c">N</span>
+							<label class="main-label">脑筋急转弯</label>
+						</div>
+					</div>
+					<div tapmode=""  class="main-grid-cell border-horizontal-right cell-touch-active" onclick="api.openWin({name : 'IdiomsDictionary',url : './class/IdiomsDictionary/IdiomsDictionary_head.html',});">
+						<div class="main-align-center">
+							<span class="main-icon  main-background-5cb85c">C</span>
+							<label class="main-label">成语词典</label>
+						</div>
+					</div>
+					<div tapmode=""  class="main-grid-cell border-horizontal-right cell-touch-active" onclick="api.openWin({name : 'history',url : './class/history/history_head.html'});">
+						<div class="main-align-center">
+							<span class="main-icon  main-background-5cb85c">L</span>
+							<label class="main-label">历史上的今天</label>
+						</div>
+					</div>
+					<div tapmode=""  class="main-grid-cell border-horizontal-right cell-touch-active" onclick="api.openWin({name : 'waterfall',url : './class/beauty/waterfall_win.html'});">
+						<div class="main-align-center">
+							<span class="main-icon main-background-eee ">J</span>
+							<label class="main-label">禁图</label>
+						</div>
+					</div>
+					<div tapmode=""  class="main-grid-cell border-horizontal-right cell-touch-active" onclick="api.openWin({name : 'calendar',url : './class/calendar/calendar_head.html'});">
+						<div class="main-align-center">
+							<span class="main-icon main-background-52ace5">W</span>
+							<label class="main-label">万年历</label>
+						</div>
+					</div>
+					<div tapmode=""  class="main-grid-cell border-horizontal-right cell-touch-active" onclick="api.openWin({name : 'Weather',url : './class/Weather/weather_head.html'});">
+						<div class="main-align-center">
+							<span class="main-icon main-background-52ace5">T</span>
+							<label class="main-label">天气预报</label>
+						</div>
+					</div>
+					<div tapmode=""  class="main-grid-cell border-horizontal-right cell-touch-active" onclick="api.openWin({name : 'Node_head',url : './class/ServerTest/Node_head.html'});">
+						<div class="main-align-center">
+							<span class="main-icon main-background-52ace5">F</span>
+							<label class="main-label">服务器数据</label>
+						</div>
+					</div>
+	<!--				<div tapmode=""  class="main-grid-cell border-horizontal-right cell-touch-active">
+						<div class="main-align-center">
+							<span class="main-icon main-background-ff7f8a ">Z</span>
+							<label class="main-label">折叠面板</label>
+						</div>
+					</div>
+					<div tapmode=""  class="main-grid-cell border-horizontal-right cell-touch-active">
+						<div class="main-align-center">
+							<span class="main-icon main-background-ff7f8a ">Q</span>
+							<label class="main-label">切换选项卡</label>
+						</div>
+					</div>
+					<div tapmode=""  class="main-grid-cell border-horizontal-right cell-touch-active">
+						<div class="main-align-center">
+							<span class="main-icon main-background-ff7f8a ">M</span>
+							<label class="main-label">模板引擎</label>
+						</div>
+					</div>
+					<div tapmode=""  class="main-grid-cell border-horizontal-right cell-touch-active">
+						<div class="main-align-center">
+							<span class="main-icon main-background-eee">M</span>
+							<label class="main-label">MD编辑器</label>
+						</div>
+					</div>
+					<div tapmode=""  class="main-grid-cell border-horizontal-right cell-touch-active">
+						<div class="main-align-center">
+							<span class="main-icon main-background-3c4146">Z</span>
+							<label class="main-label">字体颜色</label>
+						</div>
+					</div>
+					<div tapmode=""  class="main-grid-cell border-horizontal-right cell-touch-active">
+						<div class="main-align-center">
+							<span class="main-icon main-background-3c4146">B</span>
+							<label class="main-label">背景颜色</label>
+						</div>
+					</div>
+					<div tapmode=""  class="main-grid-cell border-horizontal-right cell-touch-active">
+						<div class="main-align-center">
+							<span class="main-icon main-background-3c4146">C</span>
+							<label class="main-label">常见Toast</label>
+						</div>
+					</div>
+					<div tapmode=""  class="main-grid-cell border-horizontal-right cell-touch-active">
+						<div class="main-align-center">
+							<span class="main-icon main-background-3c4146">T</span>
+							<label class="main-label">拖动排序</label>
+						</div>
+					</div>-->
+					<div tapmode=""  class="main-grid-cell border-horizontal-right cell-touch-active" onclick="api.openWin({name : 'AUI',url : './class/aui/index.html'});">
+						<div class="main-align-center">
+							<span class="main-icon main-background-ffa977 ">A</span>
+							<label class="main-label">AUI</label>
+						</div>
+					</div>
+					<div tapmode=""  class="main-grid-cell border-horizontal-right cell-touch-active" onclick="api.openWin({name : 'AUI2.0',url : './class/aui2/index.html'});">
+						<div class="main-align-center">
+							<span class="main-icon main-background-ffa977 ">A</span>
+							<label class="main-label">AUI2.0</label>
+						</div>
+					</div>
+					<div tapmode=""  class="main-grid-cell border-horizontal-right cell-touch-active" onclick="api.openWin({name : 'AUI2.1',url : './class/aui2.1/index.html'});">
+						<div class="main-align-center">
+							<span class="main-icon main-background-ffa977 ">A</span>
+							<label class="main-label">AUI2.1</label>
+						</div>
+					</div>
+					<div tapmode=""  class="main-grid-cell border-horizontal-right cell-touch-active" onclick="api.openWin({name : 'HUI',url : './class/Hui/html/index.html'});">
+						<div class="main-align-center">
+							<span class="main-icon main-background-ffa977 ">H</span>
+							<label class="main-label">HUI</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="padding-vertical-bottom"></div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript">
+		apiready = function() {
+var s;
+
+		};
+	</script>
+</html>

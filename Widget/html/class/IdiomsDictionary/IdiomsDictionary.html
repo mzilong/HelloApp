@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../../../css/aui.css"/>
+		<style>
+		</style>
+	</head>
+	<body>
+		<div class="aui-searchbar-wrap demo" id="search" >
+			<div class="aui-searchbar aui-border-radius" tapmode onclick="doSearch()" >
+				<i class="aui-iconfont aui-icon-search"></i>
+				<div class="aui-searchbar-text">
+					成语词典
+				</div>
+				<div class="aui-searchbar-input">
+					<input type="text" id='idioms' placeholder="请输入成语" autocapitalize="off" >
+				</div>
+			</div>
+			<div class="aui-searchbar-cancel aui-text-info" tapmode onclick="search()">
+				查询
+			</div>
+			<div class="aui-searchbar-cancel aui-text-info" id="cancel" tapmode onclick="cancelSearch()">
+				取消
+			</div>
+		</div>
+		<p class="aui-text-center  aui-padded-20">
+			查询结果
+		</p>
+		<div class="aui-card">
+			<ul class="aui-list-view">
+				<li class="aui-list-view-cell" data-win="list_arrow" id="chengyujs">
+					成语意思:
+				</li>
+				<li class="aui-list-view-cell" data-win="list_thumb" id="from_">
+					成语出处:
+				</li>
+				<li class="aui-list-view-cell" data-win="list-image" id="example">
+					举例:
+				</li>
+				<li class="aui-list-view-cell" data-win="list-image" id="yinzhengjs">
+					引证解释:
+				</li>
+				<li class="aui-list-view-cell" data-win="list-image" id="tongyi">
+					同义词:
+				</li>
+				<li class="aui-list-view-cell" data-win="list-image" id="fanyi">
+					反义词:
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../../script/api.js"></script>
+	<script type="text/javascript">
+		apiready = function() {
+			api.parseTapmode();
+		};
+		function doSearch() {
+			$api.addCls($api.dom(".aui-searchbar-wrap"), "focus");
+			$api.dom('.aui-searchbar-input input').focus();
+		}
+
+		function search() {
+			api.ajax({
+				url : 'http://v.juhe.cn/chengyu/query?key=a5ed46efd323466b09c88e92da27968f&word=' + $api.byId('idioms').value, //如果地址访问不到会请求出错，请填写自己的接口地址
+				method : 'get',
+				cache : 'false',
+				timeout : 30,
+				dataTpye : 'json',
+				data : {
+				}
+			}, function(ret, err) {
+				if (ret) {
+					if (ret.error_code == '0') {
+						$api.html($api.byId('chengyujs'), '成语意思:<br>' + ret.result.chengyujs);
+						if (ret.result.from_ != null)
+						$api.html($api.byId('from_'), '成语出处:<br>' + ret.result.from_);
+						if (ret.result.example != null)
+							$api.html($api.byId('example'), '举例:<br>' + ret.result.example);
+						if (ret.result.yinzhengjs != null)
+							$api.html($api.byId('yinzhengjs'), '引证解释:<br>' + ret.result.yinzhengjs);
+						var temp = '';
+						if (ret.result.tongyi != null) {
+							for (var i = 0; i < ret.result.tongyi.length; i++) {
+								temp = temp + ret.result.tongyi[i];
+								if (i < ret.result.tongyi.length - 1)
+									temp = temp + ';'
+							}
+							$api.html($api.byId('tongyi'), '同义词:<br>' + temp);
+						}
+						temp='';
+						if (ret.result.fanyi != null) {
+							for (var i = 0; i < ret.result.fanyi.length; i++) {
+								temp = temp + ret.result.fanyi[i];
+								if (i < ret.result.fanyi.length - 1)
+									temp = temp + ';'
+							}
+							$api.html($api.byId('fanyi'), '反义词:<br>' + temp);
+						}
+					} else {
+						api.toast({
+							msg : ret.reason
+						});
+					}
+				} else {
+					alert(JSON.stringify(err));
+				}
+			});
+		}
+
+		function cancelSearch() {
+			$api.addEvt($api.dom("#cancel"), 'click', function() {
+				$api.removeCls($api.dom(".aui-searchbar-wrap.focus"), "focus");
+			});
+		}
+	</script>
+</html>

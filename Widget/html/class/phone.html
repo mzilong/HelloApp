@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<style>
+		</style>
+	</head>
+	<body>
+		<div class="aui-searchbar-wrap demo" id="search" >
+			<div class="aui-searchbar aui-border-radius" tapmode onclick="doSearch()" >
+				<i class="aui-iconfont aui-icon-search"></i>
+				<div class="aui-searchbar-text">
+					请输入手机号
+				</div>
+				<div class="aui-searchbar-input">
+					<input type="text" id='phoneid' placeholder="请输入身份证号" autocapitalize="off" >
+				</div>
+			</div>
+			<div class="aui-searchbar-cancel aui-text-info" tapmode onclick="search()">
+				查询
+			</div>
+			<div class="aui-searchbar-cancel aui-text-info" id="cancel" tapmode onclick="cancelSearch()">
+				取消
+			</div>
+		</div>
+		<p class="aui-text-center  aui-padded-20">
+			查询结果
+		</p>
+		<div class="aui-card">
+			<ul class="aui-list-view">
+				<li class="aui-list-view-cell" data-win="list_arrow" id="phone">
+					手机号:
+				</li>
+				<!-- <li class="aui-list-view-cell" data-win="list_thumb" id="supplier">
+					厂商类型:
+				</li>
+				<li class="aui-list-view-cell" data-win="list-image" id="province">
+					省份:
+				</li> -->
+				<li class="aui-list-view-cell" data-win="list-image" id="city">
+					城市：
+				</li>
+				<li class="aui-list-view-cell" data-win="list-image" id="suit">
+					卡类型：
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript">
+		apiready = function() {
+			api.parseTapmode();
+		};
+		function doSearch() {
+			$api.addCls($api.dom(".aui-searchbar-wrap"), "focus");
+			$api.dom('.aui-searchbar-input input').focus();
+		}
+
+		function search() {
+			api.ajax({
+				url : 'http://api.avatardata.cn/MobilePlace/LookUp?key=aef2ed1c004148cdb0caee5110dfc11f&mobileNumber=' + $api.byId('phoneid').value, //如果地址访问不到会请求出错，请填写自己的接口地址
+				method : 'get',
+				cache : 'false',
+				timeout : 30,
+				dataTpye : 'json',
+				data : {
+				}
+			}, function(ret, err) {
+				if (ret) {
+					if (ret.error_code=='0')
+					{
+					$api.html($api.byId('phone'), '手机号:' + $api.byId('phoneid').value);
+				//	$api.html($api.byId('supplier'), '厂商类型:' + ret.result.supplier);
+			//		$api.html($api.byId('province'), '省份:' + ret.result.mobilearea);
+					$api.html($api.byId('city'), '城市:' + ret.result.mobilearea);
+					$api.html($api.byId('suit'), '卡类型:' + ret.result.mobiletype);
+					}
+					else if (ret.error_code=='-1')
+					{
+					api.toast({
+	                    msg:ret.reason
+                    });
+					}
+					else
+					 alert(JSON.stringify(ret));
+				} else {
+					alert(JSON.stringify(err));
+				}
+			});
+		}
+
+		function cancelSearch() {
+			$api.addEvt($api.dom("#cancel"), 'click', function() {
+				$api.removeCls($api.dom(".aui-searchbar-wrap.focus"), "focus");
+			});
+		}
+	</script>
+</html>

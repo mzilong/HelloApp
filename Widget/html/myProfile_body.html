@@ -1,0 +1,264 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="../css/iconfont/iconfont.css" />
+		<style type="text/css">
+			body {
+				background: #efeff4;
+			}
+			.user-allinfo {
+				padding: 15px 15px 30px 15px;
+				background: #03a9f4;
+				position: relative;
+				overflow: visible;
+				text-align: center;
+			}
+			.img-container {
+				width: 85px;
+				height: 85px;
+				position: relative;
+				margin: 0 auto;
+				font-size: 0;
+				overflow: visible;
+				border-radius: 50%;
+				-webkit-border-radius: 50%;
+				margin-bottom: 10px;
+			}
+			.img-container p {
+				position: absolute;
+				z-index: 100;
+				width: 24px;
+				height: 24px;
+				text-align: center;
+				border-radius: 50%;
+				-webkit-border-radius: 50%;
+				border: 2px solid #5b95f7;
+				background: rgba(255,255,255,0.8);
+			}
+			.img-container p  span {
+				color: #4385f6;
+				font-size: 14px;
+				padding: 0 !important;
+			}
+			.img-container p.ico-xji {
+				left: 0;
+				top: 0;
+			}
+			.img-container p.ico-gender {
+				right: 0;
+				bottom: 0;
+			}
+			.user-allinfo img {
+				width: 85px;
+				height: 85px;
+				border-radius: 50%;
+				-webkit-border-radius: 50%;
+				border: 2px solid #7facf9;
+				margin: 0 auto 0 auto;
+			}
+			.profile {
+				margin-bottom: 5px;
+			}
+			.profile li {
+				background: #fff;
+			}
+			.li-container {
+				position: relative;
+				padding: 15px 10px 0 10px;
+			}
+			.des {
+				color: #999999;
+				font-size: 14px;
+			}
+			.value {
+				font-size: 16px;
+				color: #666;
+				padding: 5px 27px 10px 0;
+					width: 80%;
+			}
+			.profile li:last-child {
+			}
+		</style>
+	</head>
+	<body>
+		<div class="user-allinfo">
+			<div class="img-container">
+				<img id="portrait"  src="../image/pic.jpg" />
+        <p class="ico-gender">
+          <span id="icongender" class="iconfont icon-nan"></span>
+        </p>
+			</div>
+		</div>
+		<div class="aui-content">
+			<ul class="profile">
+				<li>
+					<div class="li-container aui-arrow-right">
+						<div class="des">
+							个人昵称
+						</div>
+						<input class="value" id="nickname" value="点点例"  onchange="updateSave('nickname')">
+						<div class="aui-line-x"></div>
+					</div>
+				</li>
+				<li>
+					<div class="li-container aui-arrow-right">
+						<div class="des">
+							移动手机
+						</div>
+						<div class="value" id="username">
+							18676265646
+						</div>
+						<div class="aui-line-x"></div>
+					</div>
+				</li>
+				<li>
+					<div class="li-container aui-arrow-right">
+						<div class="des">
+							电子邮箱
+						</div>
+						<input  class="value" id="email" value="" onchange="updateSave('email')">
+						<div class="aui-line-x"></div>
+					</div>
+				</li>
+				<li>
+					<div class="li-container aui-arrow-right">
+						<div class="des">
+							出生日期
+						</div>
+						<input class="value" id="birthday"  value="" onchange="updateSave('birthday')">
+						<div class="aui-line-x"></div>
+					</div>
+				</li>
+				<li>
+					<div class="li-container aui-arrow-right">
+						<div class="des">
+							所在城市
+						</div>
+						<input class="value"  id="address" value="" onchange="updateSave('address')">
+					</div>
+					<div class="aui-line-x"></div>
+				</li>
+			</ul>
+			<ul class="profile">
+				<li>
+					<div class="li-container aui-arrow-right">
+						<div class="des">
+							用户性别
+						</div>
+						<div class="value" id="gender">
+							男性
+						</div>
+						<div class="aui-line-x"></div>
+					</div>
+				</li>
+				<li>
+					<div class="li-container aui-arrow-right">
+						<div class="des">
+							用户身份
+						</div>
+						<input class="value" id="profession" value="程序猿" onchange="updateSave('profession')">
+						<div class="aui-line-x"></div>
+					</div>
+				</li>
+				<li>
+					<div class="li-container aui-arrow-right">
+						<div class="des">
+							个性签名
+						</div>
+						<input class="value" id="des" value="修技之道，皆为点点起，积少便成多！" onchange="updateSave('des')">
+					</div>
+					<div class="aui-line-x"></div>
+				</li>
+			</ul>
+
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript" src="../script/zepto.min.js"></script>
+	<script type="text/javascript">
+				apiready = function()  {
+          Zepto(function($) {
+            api.getPrefs({
+              key : 'user_info'
+            }, function(ret, err) {
+              var b = $api.byId('nickname');
+              var udes = $api.byId('des');
+              //	var  a= document.getElementById('name');
+              if (ret.value && ret.value != "") {
+                $api.val(b, '' + JSON.parse(ret.value).user_info + '');
+								$api.html($api.byId('username'), '' + JSON.parse(ret.value).user_name + '');
+								if (typeof(JSON.parse(ret.value).user_email)!="undefined")
+								{
+									$api.val($api.byId('email'), '' + JSON.parse(ret.value).user_email);
+								}
+								if (typeof(JSON.parse(ret.value).user_address)!="undefined")
+								{
+									$api.val($api.byId('address'), '' + JSON.parse(ret.value).user_address);
+								}
+								if (typeof( JSON.parse(ret.value).user_birthday)!="undefined")
+								{
+									$api.val($api.byId('birthday'), '' + JSON.parse(ret.value).user_birthday );
+								}
+
+
+								$api.html($api.byId('gender'), '' + JSON.parse(ret.value).user_gender);
+								$api.val($api.byId('profession'), '' + JSON.parse(ret.value).user_info + '');
+                $api.val(udes, '' + JSON.parse(ret.value).user_des + '');
+
+                if (JSON.parse(ret.value).user_savePath) {
+                  $api.attr($api.byId("portrait"), "src", JSON.parse(ret.value).user_savePath);
+                }
+                if (JSON.parse(ret.value).user_gender == "女") {
+                  $api.removeCls($api.byId("icongender"), "icon-nan");
+                  $api.addCls($api.byId("icongender"), "icon-nv");
+                } else {
+                  $api.removeCls($api.byId("icongender"), "icon-nv");
+                  $api.addCls($api.byId("icongender"), "icon-nan");
+                }
+
+              } else {
+                $api.html(b, '登录名');
+                $api.val(udes, '我的说说：修技之道，皆为点点起，积少便成多！');
+                $api.attr($api.byId("portrait"), "src", "../image/pic.jpg");
+                $api.removeCls($api.byId("icongender"), "icon-nv");
+                $api.addCls($api.byId("icongender"), "icon-nan");
+              }
+            });
+          });
+		}
+		function updateSave(uid)
+		{
+			var val=$api.val($api.byId(uid));
+			var model = api.require('model');
+
+				api.getPrefs({
+					key : 'user_info'
+				}, function(ret, err) {
+					model.updateById({
+							class: 'user',
+							id: JSON.parse(ret.value).user_id,
+							value: {
+									uid: val
+							}
+					}, function(ret, err){
+							if( ret ){
+									 api.toast({msg: '已更新',duration: 2000,location: 'bottom'});
+							}else{
+									 alert( JSON.stringify( err ) );
+							}
+					});
+				});
+				api.setPrefs({
+				    key: 'k',
+				    value: '1'
+				});
+
+
+		}
+	</script>
+</html>

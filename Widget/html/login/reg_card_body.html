@@ -1,0 +1,201 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<style type="text/css">
+			.swiper-container {
+				width: 100%;
+				padding-top: 10px;
+				padding-bottom: 50px;
+			}
+			.swiper-slide {
+				background-position: center;
+				background-size: cover;
+				width: 200px;
+				height: 310px;
+			}
+			.swiper-slide img {
+				width: 200px;
+				height: 255px;
+			}
+			.swiper-slide p {
+				font-size: 30px;
+				text-align: center;
+				padding: 10px;
+			}
+			.form-btn {
+				padding: 20px 30px 15px 30px;
+			}
+			.aui-btn-4385f6 {
+				background: #4385f6 !important;
+				color: #f9f9f9 !important;
+				border: none;
+				outline: none;
+			}
+			.form-btn button:active {
+				background: rgba(67,133,246,0.8) !important;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide" style="background-image:url()">
+					<p>
+						设计师
+					</p>
+					<img src="../../image/ui.png" />
+				</div>
+				<div class="swiper-slide" style="background-image:url()">
+					<p>
+						程序猿
+					</p>
+					<img src="../../image/program.png" />
+				</div>
+				<div class="swiper-slide" style="background-image:url()">
+					<p>
+						攻城狮
+					</p>
+					<img src="../../image/front.png" />
+				</div>
+			</div>
+			<div class="swiper-pagination"></div>
+		</div>
+		<div class="form-btn">
+			<button class="aui-btn aui-btn-4385f6 aui-btn-block" id="login-btn" tapmode>
+				完成注册
+			</button>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/swiper.min.js"></script>
+	<script type="text/javascript">
+		var swiper = new Swiper('.swiper-container', {
+			initialSlide : 1,
+			pagination : '.swiper-pagination',
+			effect : 'coverflow',
+			grabCursor : true,
+			centeredSlides : true,
+			slidesPerView : 'auto',
+			coverflow : {
+				rotate : 50,
+				stretch : 0,
+				depth : 100,
+				modifier : 1,
+				slideShadows : false
+			},
+		});
+		Zepto(function($) {
+			$("#login-btn").on("tap", function() {
+				var profession = '';
+				//				alert(api.pageParam.nickname);
+				//				alert(api.pageParam.gender);
+				//				alert(api.pageParam.des);
+				//				alert(api.pageParam.phone);
+				//				alert(api.pageParam.password);
+				//				alert(swiper.activeIndex);
+				if (swiper.activeIndex == 1) {
+					profession = '设计师';
+				} else if (swiper.activeIndex == 2) {
+					profession = '程序猿';
+				} else {
+					profession = '攻城狮';
+				}
+				var user = api.require('user');
+				var query = api.require('query');
+				var model = api.require('model');
+				query.createQuery(function(ret, err) {
+					if (ret && ret.qid) {
+						var queryId = ret.qid;
+						query.whereEqual({
+								qid : queryId,
+								column : 'username',
+								value : api.pageParam.phone
+							});			
+						model.findAll({
+							class : "user",
+							qid : queryId
+						}, function(ret, err) {
+							if (ret) {
+								if (ret.length > 0) {
+									api.toast({
+										msg : '该用户名已存在！'
+									});
+								} else {
+									user.register({
+										username : api.pageParam.phone,
+										password : api.pageParam.password,
+										email : '1305206287@qq.com',
+									}, function(ret, err) {
+										if (ret) {
+											var model = api.require('model');
+											model.updateById({
+												class : 'user',
+												id : ret.id,
+												value : {
+													nickname : api.pageParam.nickname,
+													mobile : api.pageParam.phone,
+													profession : profession,
+													gender : api.pageParam.gender,
+													des : api.pageParam.des
+												}
+											}, function(ret, err) {
+												if (ret) {
+													api.closeToWin({
+														name : 'login_head'
+													});
+												} else {
+													alert(JSON.stringify(err));
+												}
+											});
+											
+											if (api.pageParam.path)
+											{
+											model.uploadFile({
+												report : true,
+												data : {
+													file : {
+														name : api.pageParam.path.substring(api.pageParam.path.lastIndexOf('/') + 1),
+														url : api.pageParam.path
+													},
+													values : {
+														userid : ret.id,
+														username : api.pageParam.phone
+													}
+												}
+											}, function(ret, err) {
+												if (ret) {
+													var state = ret.state;
+													if (state == 1) {
+														//上传完成
+														var body = ret.body;
+														if (body) {
+															api.toast({
+																msg : "头像已新增"
+															});
+														}
+													} else {
+													}
+												} else {
+													alert(JSON.stringify(err));
+												}
+											});
+											}
+										} else {
+											alert(JSON.stringify(err));
+										}
+									});
+								}
+							}
+						});
+					}
+				});
+			});
+		});
+	</script>
+</html>

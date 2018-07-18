@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+		<style type="text/css">
+			.aui-list-view-cell:active {
+				background: #f4f4f4;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="aui-content">
+			<ul class="aui-list-view">
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode data-url="http://www.auicss.com">
+					<div class="aui-arrow-right">
+						AUI 前端UI
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode data-url="http://m.sui.taobao.org/components/">
+					<div class="aui-arrow-right">
+						SUI Moblie 淘宝出品前端UI
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode data-url="http://framework7.taobao.org/">
+					<div class="aui-arrow-right">
+						Framework 7 非常齐全的UI
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode data-url="http://www.iconfont.cn">
+					<div class="aui-arrow-right">
+						Iconfont 字体图标
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode data-url="http://zeptojs.com/">
+					<div class="aui-arrow-right">
+						Zepto.js DOM操作库
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode data-url="http://www.echojs.com">
+					<div class="aui-arrow-right">
+						Echo.js 图片懒加载
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode data-url="http://olado.github.io/doT/index.html">
+					<div class="aui-arrow-right">
+						doT.js JS模板引擎
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode data-url="http://linqjs.codeplex.com/">
+					<div class="aui-arrow-right">
+						Linq.js JSON操作库
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode data-url="https://lodash.com/">
+					<div class="aui-arrow-right">
+						Lodash.js 必备JS工具库
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode data-url="http://www.idangero.us/swiper/">
+					<div class="aui-arrow-right">
+						Swiper.js 手势滑动
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode data-url="http://hammerjs.github.io/">
+					<div class="aui-arrow-right">
+						Hammer.js 支持手机所有手势
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode data-url="http://echarts.baidu.com/">
+					<div class="aui-arrow-right">
+						ECharts.js 3.0 百度出品的图表插件
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode data-url="http://alexgorbatchev.com/SyntaxHighlighter/">
+					<div class="aui-arrow-right">
+						Syntaxhighlighter.js 代码高亮
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-win="list_arrow" tapmode data-url="http://cubiq.org/iscroll-5">
+					<div class="aui-arrow-right">
+						iScroll 5 滚动插件
+					</div>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript">
+		Zepto(function($) {
+		// 华为 andorid 6.0无法使用
+			$(".aui-list-view").on("click", "li", function() {
+				var url = $(this).attr("data-url");
+				if (url) {
+					api.openApp({
+						androidPkg : 'android.intent.action.VIEW',    
+						mimeType : 'text/html',
+						uri : url
+					}, function(ret, err) {
+						if (ret) {
+							alert(JSON.stringify(ret));
+						} else {
+							alert(JSON.stringify(err));
+						}
+					});
+				} else {
+					alert("苦逼程序猿，正在疯狂加班中……");
+				}
+			});
+		});
+	</script>
+</html>

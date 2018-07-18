@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<style>
+		</style>
+	</head>
+	<body>
+		<div class="aui-searchbar-wrap demo" id="search" >
+			<div class="aui-searchbar aui-border-radius" tapmode onclick="doSearch()">
+				<i class="aui-iconfont aui-icon-search"></i>
+				<div class="aui-searchbar-text">
+					请输入身份证号
+				</div>
+				<div class="aui-searchbar-input">
+					<input type="text" placeholder="请输入身份证号" id="IdCard" autocapitalize="off">
+				</div>
+			</div>
+			<div class="aui-searchbar-cancel aui-text-info" tapmode onclick="search()">
+				查询
+			</div>
+			<div class="aui-searchbar-cancel aui-text-info" tapmode  id="cancel" onclick="cancelSearch()">
+				取消
+			</div>
+		</div>
+		<p class="aui-text-center  aui-padded-20">
+			查询结果
+		</p>
+		<div class="aui-card">
+			<ul class="aui-list-view">
+				<li class="aui-list-view-cell" data-win="list_arrow" id="area">
+					地区:
+				</li>
+				<li class="aui-list-view-cell" data-win="list_thumb" id="sex">
+					性别:
+				</li>
+				<li class="aui-list-view-cell" data-win="list-image" id="birthday">
+					出生年月:
+				</li>
+				<li class="aui-list-view-cell" data-win="list-image" id="security">
+					安全性:
+				</li>
+				<li class="aui-list-view-cell" data-win="list-image" id="loss">
+					挂失查询:
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript">
+		apiready = function() {
+			api.parseTapmode();
+		};
+		function doSearch() {
+			$api.addCls($api.dom(".aui-searchbar-wrap"), "focus");
+			$api.dom('.aui-searchbar-input input').focus();
+		}
+
+		function search() {
+			if ($api.byId('IdCard').value != '') {
+				api.ajax({
+					url : 'http://apis.juhe.cn/idcard/index?key=c0b38388ee2aac355beb0059290016c4&cardno=' + $api.byId('IdCard').value, //如果地址访问不到会请求出错，请填写自己的接口地址
+					method : 'get',
+					cache : 'false',
+					timeout : 30,
+					dtype : 'json',
+					data : {
+					}
+				}, function(ret, err) {
+					if (ret) {
+						if (ret.resultcode == '200') {
+							$api.html($api.byId('area'), '地区:' + ret.result.area);
+							$api.html($api.byId('sex'), '性别:' + ret.result.sex);
+							$api.html($api.byId('birthday'), '出生年月:' + ret.result.birthday);
+						} else {
+							alert(JSON.stringify(ret));
+						}
+					} else {
+						alert(JSON.stringify(err));
+					}
+				});
+				api.ajax({
+					url : 'http://apis.juhe.cn/idcard/leak?key=c0b38388ee2aac355beb0059290016c4&cardno=' + $api.byId('IdCard').value, //如果地址访问不到会请求出错，请填写自己的接口地址
+					method : 'get',
+					cache : 'false',
+					timeout : 30,
+					dtype : 'json',
+					data : {
+					}
+				}, function(ret, err) {
+					if (ret) {
+						if (ret.resultcode == '200') {
+							$api.html($api.byId('security'), '安全性:' + ret.result.tips);
+						} else {
+							alert(JSON.stringify(ret));
+						}
+					} else {
+						alert(JSON.stringify(err));
+					}
+				});
+				api.ajax({
+					url : 'http://apis.juhe.cn/idcard/loss?key=c0b38388ee2aac355beb0059290016c4&cardno=' + $api.byId('IdCard').value, //如果地址访问不到会请求出错，请填写自己的接口地址
+					method : 'get',
+					cache : 'false',
+					timeout : 30,
+					dtype : 'json',
+					data : {
+					}
+				}, function(ret, err) {
+					if (ret) {
+						if (ret.resultcode == '200') {
+							$api.html($api.byId('loss'), '挂失查询:' + ret.result.tips);
+						} else {
+							alert(JSON.stringify(ret));
+						}
+					} else {
+						alert(JSON.stringify(err));
+					}
+				});
+			}
+		}
+
+		function cancelSearch() {
+			$api.addEvt($api.dom("#cancel"), 'click', function() {
+				$api.removeCls($api.dom(".aui-searchbar-wrap.focus"), "focus");
+			});
+		}
+	</script>
+</html>

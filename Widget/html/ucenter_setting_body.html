@@ -1,0 +1,243 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="../css/iconfont/iconfont.css" />
+		<style type="text/css">
+			.aui-switch:checked {
+				background: #4385f6 !important;
+				border-color: #4385f6 !important;
+				box-shadow: #4385f6 0 0 0 26px inset !important;
+			}
+			.aui-list-view-cell:after {
+				border-bottom: 1px solid #d7d7d7;
+				margin-left: 55px;
+			}
+			.aui-list-view-cell:last-child:after {
+				border-bottom: 1px solid #d7d7d7;
+				margin-left: 0;
+			}
+			.aui-list-view {
+				position: relative;
+				padding-left: 0;
+				margin-top: 0;
+				margin-bottom: 5px;
+				list-style: none;
+				background-color: #fff;
+			}
+			.aui-content { -webkit-overflow-scrolling: touch; margin-bottom: 10px; }
+			.aui-list-view-cell {
+				color: #767677;
+			}
+			.icon-bg-70a1cd {
+				color: #70a1cd !important;
+			}
+			.icon-bg-84c9a5 {
+				color: #84c9a5 !important;
+			}
+			.icon-bg-eac14d {
+				color: #eac14d !important;
+			}
+			.icon-bg-7658f8 {
+				color: #7658f8 !important;
+			}
+			.icon-bg-e6567a {
+				color: #e6567a !important;
+			}
+			.icon-bg-0b5743 {
+				color: #0b5743 !important;
+			}
+			.icon-bg-919adf {
+				color: #919adf !important;
+			}
+			.icon-bg-b5292a {
+				color: #b5292a !important;
+			}
+			.aui-badge {
+				margin-right: 20px;
+				margin-top: 4px;
+			}
+			li.aui-list-view-cell:active {
+				background: #f4f4f4;
+			}
+			.aui-switch {
+				margin-right: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="aui-content">
+			<ul class="aui-list-view">
+				<li class="aui-list-view-cell" tapmode>
+					<i class="aui-iconfont iconfont icon-dingwei icon-bg-70a1cd"></i>允许定位
+					<input type="checkbox" id="checkAddress" class="aui-switch aui-pull-right" checked="true" onchange="showAddress()">
+				</li>
+				<li class="aui-list-view-cell" tapmode>
+					<i class="aui-iconfont iconfont icon-yidongwangluo01 icon-bg-84c9a5"></i>移动网络加载图片
+					<input type="checkbox" class="aui-switch aui-pull-right">
+				</li>
+				<li class="aui-list-view-cell" tapmode onclick="api.toast({msg : 'Alpha版本暂不支持检查更新'})">
+					<i class="aui-iconfont iconfont icon-jianchagengxin icon-bg-eac14d"></i>检查更新<span style="float: right;font-size:14px;color:#666;margin-top:3px;">V0.3.0</span>
+				</li>
+				<li class="aui-list-view-cell" tapmode onclick="">
+					<div class="aui-arrow-right">
+						<i class="aui-iconfont iconfont icon-gongnengyejiarukaiyuanxiangmu icon-bg-eac14d"></i>开源地址
+					</div>
+				</li>
+				<li class="aui-list-view-cell" tapmode onclick="">
+					<div class="aui-arrow-right">
+						<i class="aui-iconfont iconfont icon-jilu icon-bg-7658f8"></i>版本历程 <span class="aui-badge aui-badge-info aui-pull-right">有更新</span>
+					</div>
+				</li>
+				<li class="aui-list-view-cell" tapmode id="clear-cache" onclick="show()">
+					<div class="aui-arrow-right">
+						<i class="aui-iconfont iconfont icon-qinglihuancun icon-bg-e6567a"></i>清除缓存 <span class="aui-badge aui-badge-success aui-pull-right">0 M</span>
+					</div>
+				</li>
+				<li class="aui-list-view-cell" tapmode id="resetall" >
+					<i class="aui-iconfont iconfont icon-zhongzhi icon-bg-b5292a"></i>清空所有配置
+				</li>
+				<li class="aui-list-view-cell" tapmode onclick="">
+					<div class="aui-arrow-right">
+						<i class="aui-iconfont iconfont icon-yijian icon-bg-0b5743"></i>意见反馈
+					</div>
+				</li>
+				<li class="aui-list-view-cell" tapmode onclick="">
+					<div class="aui-arrow-right">
+						<i class="aui-iconfont iconfont icon-guanyuwomen icon-bg-919adf"></i>关于我们
+					</div>
+				</li>
+			</ul>
+			<p style="padding: 0 10px">
+				<button class="aui-btn aui-btn-success aui-btn-block" id="login-out" onclick="loginout()">
+					退出登录
+				</button>
+			</p>
+		</div>
+		<div class="aui-dialog aui-hidden" id="dialog">
+			<div class="aui-dialog-header">
+				弹出提示
+			</div>
+			<div class="aui-dialog-body aui-text-left">
+				自定义弹出框样式
+			</div>
+			<div class="aui-dialog-footer">
+				<div class="aui-dialog-btn aui-text-danger" tapmode onclick="cancel()">
+					取消
+				</div>
+				<div class="aui-dialog-btn aui-text-info" tapmode onclick="confirm()">
+					确定
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript" src="../script/aui-dialog.js"></script>
+	<script type="text/javascript">
+		function show() {
+			$api.append($api.dom("body"), '<div class="aui-mask"></div>');
+			$api.removeCls($api.dom(".aui-dialog.aui-hidden"), "aui-hidden");
+			api.sendEvent({
+				name : 'dialogEvent',
+				extra : {
+					type : 'show'
+				}
+			});
+		}
+
+		function cancel() {
+			$api.remove($api.dom(".aui-mask"));
+			$api.addCls($api.dom(".aui-dialog"), "aui-hidden");
+			api.sendEvent({
+				name : 'dialogEvent',
+				extra : {
+					type : 'hidden'
+				}
+			});
+			api.toast({
+				msg : '您取消了操作',
+				duration : 2000,
+				location : 'bottom'
+			});
+		}
+
+		function confirm() {
+			Zepto(function($) {
+				$api.remove($api.dom(".aui-mask"));
+				$api.addCls($api.dom(".aui-dialog"), "aui-hidden");
+				api.sendEvent({
+					name : 'dialogEvent',
+					extra : {
+						type : 'hidden'
+					}
+				});
+				api.removePrefs({
+					key : 'launch'
+				});
+				api.clearCache(function(ret, err) {
+					$("#clear-cache span.aui-badge").text("0 M");
+					api.toast({
+						msg : '清除成功',
+						duration : 2000,
+						location : 'bottom'
+					});
+				});
+			});
+		}
+		function showAddress()
+		{
+			var checkAddress= document.getElementById('checkAddress');
+			if(checkAddress.checked){
+			var bMap = api.require('bMap');
+			bMap.getLocation({
+				accuracy: '100m',
+				autoStop: true,
+				filter: 1
+			}, function(ret, err) {
+				if (ret.status) {
+					var lon = ret.lon;
+					var lat = ret.lat;
+					bMap.getNameFromCoords({
+					lon: lon,
+					lat: lat
+	}, function(ret, err) {
+			if (ret.status) {
+					api.toast({msg :'城市:'+	ret.province + ret.city + ret.district+ ' \n地址:'+	ret.address});
+
+			}
+	});
+}
+});
+}
+		}
+		function loginout() {
+			api.removePrefs({
+				key : 'user_info'
+			});
+			api.execScript({
+				name : 'index',
+				frameName : 'ucenter_body',
+				script : 'loginsuccess();'
+			});
+			api.closeToWin({
+				name : 'index'
+			});
+		}
+
+		apiready = function() {
+			api.parseTapmode();
+			api.getCacheSize(function(ret, err) {
+				if (ret) {
+					$("#clear-cache span.aui-badge").text((ret.size / 1000 / 1000).toFixed(2) + " M");
+				} else {
+					$("#clear-cache span.aui-badge").text("0 M");
+				}
+			});
+		}
+	</script>
+</html>

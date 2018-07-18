@@ -1,0 +1,258 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="../css/iconfont/iconfont.css" />
+		<!--<link rel="stylesheet" type="text/css" href="../../css/winu-ui.css" />-->
+		<style type="text/css">
+			html, body {
+				background: rgba(0,0,0,0);
+			}
+			body {
+				background: #fff url(../image/slide_bg.png) no-repeat right bottom;
+				background-size: 100% auto;
+				-webkit-background-size: 100% auto;
+				position: relative;
+			}
+			.aui-list-view {
+				background: rgba(0,0,0,0);
+				color: #909193;
+			}
+			.aui-content {
+				margin: 0;
+				overflow-x: auto;
+			}
+			.aui-list-view-cell:after, .aui-list-view:after, .aui-list-view-cell:last-child:after {
+				border: none;
+			}
+			.aui-list-view-cell:active {
+				background: rgba(0,0,0,0.1);
+			}
+			.aui-arrow-right:after {
+				color: #b9b9ba;
+			}
+			.aui-list-view i.aui-iconfont {
+				color: #b9b9ba;
+				font-size: 19px;
+			}
+			.user-info {
+				height: 100px;
+				margin: 0 10px 10px 10px;
+				display: -webkit-box;
+				-webkit-box-orient: horizontal;
+				-webkit-box-align: center;
+				display: box;
+				box-orient: horizontal;
+				box-align: center;
+				background: rgba(0,0,0,0);
+				position: relative;
+				overflow: hidden;
+			}
+			.user-info:after {
+				border-bottom: 1px solid #e7e2e2;
+				content: "";
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
+				right: 0px;
+				-webkit-transform: scaleY(.5);
+				-webkit-transform-origin: 0 0;
+			}
+			.img-container {
+				margin-right: 10px;
+				width: 50px;
+				height: 50px;
+				overflow: visible;
+				position: relative;
+			}
+			.user-info img {
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				-webkit-border-radius: 50%;
+				vertical-align: middle;
+				vertical-align: middle;
+			}
+			.img-container .gender {
+				display: block;
+				height: 15px;
+				width: 15px;
+				border-radius: 50%;
+				-webkit-border-radius: 50%;
+				color: #fff;
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				text-align: center;
+			}
+			.img-container .gender i {
+				font-size: 10px;
+				position: relative;
+				top: -6px;
+			}
+			.img-container .gender.man {
+				background: #1d9dd5;
+			}
+			.img-container .gender.max {
+				background: #f54171;
+			}
+			.user-account {
+				text-align: left;
+			}
+			.user-account span {
+				display: block;
+				color: #444;
+			}
+			.user-account span:last-child {
+				color: #b9b9ba;
+				margin-top: 5px;
+				font-size: 13px;
+			}
+			.settings, .themb {
+				left: 15px;
+				bottom: 10px;
+				z-index: 100;
+				height: 32px;
+				color: #b9b9ba;
+			}
+			.themb {
+				left: auto;
+				right: 15px;
+			}
+			.settings span, .themb span {
+				font-size: 19px;
+				color: #ccc;
+				margin-right: 8px;
+			}
+			.level {
+				display: inline-block;
+				vertical-align: middle;
+				font-size: 9px;
+				color: #fff;
+				background: #96d2f7;
+				height: 15px;
+				line-height: 16px;
+				padding: 0 4px;
+				border-radius: 2px;
+				-webkit-border-radius: 2px;
+				margin-left: 10px;
+			}
+			.btn-bar {
+				height: 40px;
+			}
+			.aui-ellipsis-1 {
+				padding-right: 0;
+				display: block;
+			}
+		</style>
+	</head>
+	<body class="winu-flex-box-vertical" id="bdy">
+		<div class="user-info">
+			<div class="img-container">
+				<img id="portrait" src="../image/pic.jpg" />
+				<span class="gender man"><i id="icongender" class="iconfont icon-nan"></i></span>
+			</div>
+			<div class="user-account">
+				<span id="name" >工具大全<label class="level">官方人员</label></span>
+				<span id="udes" class="aui-ellipsis-1">修技之道，皆为点点起，积少便成多！</span>
+			</div>
+		</div>
+		<div class="aui-content winu-flex-item">
+			<ul class="aui-list-view aui-in" id="case-function-list">
+				<li class="aui-list-view-cell" data-funcName="layout_head" tapmode onclick="api.openWin({name: 'case_head',url: './class/Hui/html/templates/templates_head.html'});">
+					<div class="aui-arrow-right">
+						<i class="aui-iconfont iconfont icon-buju" ></i>常用布局
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-funcName="device_head" tapmode onclick="api.openWin({name: 'device_head',url: './class/device/device_head.html'});">
+					<div class="aui-arrow-right">
+						<i class="aui-iconfont iconfont icon-shebeiguanli"></i>设备获取
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-funcName="event_head" tapmode >
+					<div class="aui-arrow-right">
+						<i class="aui-iconfont iconfont icon-shijian"></i>事件监听
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-funcName="module_head" tapmode >
+					<div class="aui-arrow-right">
+						<i class="aui-iconfont iconfont icon-mokuai"></i>模块使用
+					</div>
+				</li>
+				<li class="aui-list-view-cell" data-funcName="front_nice_head" tapmode onclick="api.openWin({name: 'device_head',url: './class/front/front_nice_head.html'});">
+					<div class="aui-arrow-right">
+						<i class="aui-iconfont iconfont icon-html5"></i>前端推荐
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="btn-bar"></div>
+	</body>
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript" src="../script/zepto.min.js"></script>
+	<script type="text/javascript">
+		Zepto(function() {
+			$("#case-function-list").on("tap", "li", function() {
+				var funcName = $(this).attr("data-funcName");
+				api.openWin({
+					name : funcName,
+					url : './case/' + funcName + '.html'
+				});
+			});
+			$(".settings").on("tap", function() {
+				//				H.$removePrefs(null, 'user_info');
+				//				H.$toast("退出成功");
+				//				setTimeout(function() {
+				//					H.$openWin('login_head', '../login/login_head.html');
+				//				}, 1000);
+			});
+		});
+
+
+		var loginsuccess = function() {
+			Zepto(function($) {
+				api.getPrefs({
+					key : 'user_info'
+				}, function(ret, err) {
+					var b = $api.byId('name');
+					var udes = $api.byId('udes');
+					//	var  a= document.getElementById('name');
+					if (ret.value && ret.value != "") {
+						$api.html(b, '' + JSON.parse(ret.value).user_info + '<label class="level">官方人员</label>');
+						$api.html(udes, '' + JSON.parse(ret.value).user_des + '');
+						if (JSON.parse(ret.value).user_savePath) {
+							$api.attr($api.byId("portrait"), "src", JSON.parse(ret.value).user_savePath);
+						}
+						if (JSON.parse(ret.value).user_gender == "女") {
+							$api.removeCls($api.byId("icongender"), "icon-nan");
+							$api.addCls($api.byId("icongender"), "icon-nv");
+						} else {
+							$api.removeCls($api.byId("icongender"), "icon-nv");
+							$api.addCls($api.byId("icongender"), "icon-nan");
+						}
+					} else {
+						$api.html(b, '登录名<label class="level">官方人员</label>');
+						$api.html(udes, '我的说说：修技之道，皆为点点起，积少便成多！');
+						$api.attr($api.byId("portrait"), "src", "../image/pic.jpg");
+						$api.removeCls($api.byId("icongender"), "icon-nv");
+						$api.addCls($api.byId("icongender"), "icon-nan");
+					}
+				});
+			});
+		}
+
+
+		apiready = function()  {
+			Zepto(function() {
+				var header = $api.byId('bdy');
+				$api.fixStatusBar(header);
+				$("body").css("width", api.winWidth - 80);
+				$(".user-account").css("width", api.winWidth - 160);
+			});
+		};
+	</script>
+</html>

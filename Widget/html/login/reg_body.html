@@ -1,0 +1,459 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont/iconfont.css" />
+		<style type="text/css">
+			html, body {
+				background: #efeff4;
+				background: url(../../image/login_bg.jpg) no-repeat left top;
+				background-size: cover;
+				-webkit-background-size: cover;
+			}
+			body {
+			}
+			.top-area {
+			}
+			.logo {
+				height: 150px;
+				display: -webkit-box;
+				-webkit-box-orient: horizontal;
+				-webkit-box-pack: center;
+				-webkit-box-align: center;
+				display: box;
+				box-orient: horizontal;
+				box-pack: center;
+				box-align: center;
+			}
+			.login-area {
+				text-align: center;
+				white-space: nowrap;
+			}
+			.login-area img {
+				width: 75px;
+				height: 75px;
+				border-radius: 8px;
+				-webkit-border-radius: 8px;
+			}
+			.login-area p {
+				padding: 5px 0 0 0;
+				font-size: 15px;
+				color: #52ace5;
+			}
+			.form {
+				padding: 0 30px;
+			}
+			.form-row {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-orient: horizontal;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				width: 100%;
+				padding: 15px;
+				position: relative;
+			}
+			.form-row:after {
+				content: "";
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
+				right: 0px;
+				border-bottom: 1px solid #3e8dce;
+				-webkit-transform: scaleY(.5);
+				-webkit-transform-origin: 0 0;
+			}
+			.form-row span {
+				display: block;
+				width: 50px;
+				color: #999
+			}
+			.form-row span {
+				font-size: 22px;
+			}
+			.form-row .input-box {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+				padding-top: 2px;
+			}
+			.form-row .input-box input {
+				background: rgba(0,0,0,0);
+				border: none;
+				outline: none;
+				padding: 4px;
+				margin: 0;
+			}
+			.form-btn {
+				padding: 30px 30px 15px 30px;
+			}
+			.aui-btn-4385f6 {
+				background: #4385f6 !important;
+				color: #f9f9f9 !important;
+				border: none;
+				outline: none;
+			}
+			.form-btn button:active {
+				background: rgba(67,133,246,0.8) !important;
+			}
+			.getcode {
+				color: #52ace5;
+				line-height: 33px;
+			}
+			.showpwd {
+				color: #52ace5;
+				line-height: 33px;
+				font-size: 20px;
+			}
+			.form-o {
+				padding: 0 30px;
+			}
+			.form-o span {
+				float: left;
+				color: #52ace5;
+				font-size: 13px;
+			}
+			.checkbox {
+				width: 22px;
+				height: 22px;
+				position: relative;
+				margin: 0px 0px;
+				background: #ffffff;
+				border: solid 1px #52ace5;
+				border-radius: 4px;
+				-webkit-appearance: none;
+				transition: background-color ease 0.8s;
+				border-radius: 50%;
+				-webkit-border-radius: 50%;
+				-webkit-transform: scale(0.6);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="top-area">
+			<div class="logo">
+				<div class="login-area" id="picup">
+					<img src="../../image/pic.jpg" id="portrait" alt="" title="" />
+					<p>
+						点击上传头像
+					</p>
+				</div>
+			</div>
+			<div class="form">
+				<div class="form-area" >
+					<div class="form-row" >
+						<span class="iconfont icon-phone">&nbsp;&nbsp;|</span>
+						<div class="input-box">
+							<input type="number" id="phone" name="phone" value="" placeholder="请输入手机号" />
+						</div>
+						<p class="getcode" id="getcode" onclick="">
+							获取验证码
+						</p>
+					</div>
+					<div class="form-row">
+						<span class="iconfont icon-yanzhengma">&nbsp;&nbsp;|</span>
+						<div class="input-box">
+							<input type="number" id="vcode" name="vcode" value="" placeholder="请输入验证码" />
+						</div>
+					</div>
+					<div class="form-row">
+						<span class="iconfont icon-password">&nbsp;&nbsp;|</span>
+						<div class="input-box">
+							<input type="password" id="password" name="password" onpaste="return false" oncontextmenu="return false" oncopy="return false" oncut="return false"
+							onkeyup="value=value.replace(/[\W]/g,'') "  placeholder="请输入密码" maxlength="15"/>
+						</div>
+						<p class="iconfont icon-yey2 showpwd" onclick="ShowHidePW()"></p>
+					</div>
+				</div>
+			</div>
+			<div class="form-btn">
+				<button class="aui-btn aui-btn-4385f6 aui-btn-block" id="login-btn" tapmode onclick="next()">
+					下一步
+				</button>
+			</div>
+			<div class="form-o">
+				<span >
+					<input type="checkbox" class="aui-checkbox aui-checkbox-info checkbox"  id="chk" checked="checked" />
+					《XXX协议》</span>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/imgCompress.js"></script>
+	<script type="text/javascript">
+		// 声明sendSms全局变量
+		var smsVerify = null;
+		// 是否发送验证码的标识
+		var isPushCode = false;
+		// 是否已智能验证
+		var V = false;
+		var T = true;
+		// 发送等待句柄
+		var flag = null;
+		// 120s发送一次
+		var times = 120000;
+		// 图片存储路径
+		var path=null;
+		var next = function() {
+			if ($api.byId('chk').checked) {
+				var pwd = $api.byId('password').value;
+				var phone = $api.byId('phone').value;
+				var vcode = $api.byId('vcode').value;
+				if ($api.trim(phone) == "") {
+					api.toast({
+						msg : '手机号不能为空'
+					});
+					$api.byId('phone').focus();
+				} else if (!checkPhone($api.trim(phone))) {
+					api.toast({
+						msg : '您输入的手机号码不正确'
+					});
+					$api.byId('phone').focus();
+				} else if ($api.trim(vcode) == "") {
+					api.toast({
+						msg : '验证码不能为空'
+					});
+					$api.byId('vcode').focus();
+				} else {
+					if (V) {
+						clearInterval(flag);
+						api.toast({
+							msg : '可以跳转'
+						});
+						api.openWin({
+							name : 'reg_info_head',
+							url : './reg_info_head.html',
+							pageParam : {
+								phone : $api.val($api.byId("phone")),
+								password : $api.val($api.byId("password")),
+								path:path
+							}
+						});
+					} else {
+						// 1、判断验证码是否正确：
+						smsVerify.verify({
+							phone : $api.trim(phone),
+							code : $api.trim(vcode)
+						}, function(ret, err) {
+							if (ret.status) {
+								clearInterval(flag);
+								api.toast({
+									msg : '可以跳转'
+								});
+								api.openWin({
+									name : 'reg_info_head',
+									url : './reg_info_head.html',
+									pageParam : {
+										phone : $api.val($api.byId("phone")),
+										passowrd : $api.val($api.byId("password")),
+										path:path
+									}
+								});
+							} else {
+								api.toast({
+									msg : '验证码错误'
+								});
+								document.getElementById("vcode").focus();
+							}
+						});
+					}
+				}
+			} else {
+				api.toast({
+					msg : '请先同意协议！'
+				});
+			}
+		}
+		/***
+		 * toggle 密码明文
+		 * @constructor
+		 */
+		var pwState = false;
+		var theEl;
+		var ShowHidePW = function() {
+			if (!pwState) {
+				theEl = document.getElementById("password");
+				theEl.type = "text";
+				pwState = true;
+			} else {
+				theEl = document.getElementById("password");
+				theEl.type = "password";
+				pwState = false;
+			}
+		}
+		function delWord(el) {
+			var input = $api.prev(el, '.txt');
+			input.value = '';
+		}
+
+		function checkPhone(phone) {
+			var res = !!phone.match(/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/);
+			return res;
+		}
+
+		Zepto(function($) {
+			// 点击发送按钮发送验证码
+			$("#getcode").on('click',(function() {
+				var $phone = $("#phone");
+				var $vcode = $("#vcode");
+				var $btnObj = $(this);
+				if ($.trim($phone.val()) == "") {
+					api.toast({
+						msg : '手机号不能为空'
+					});
+					$phone.focus();
+				} else if (!checkPhone($.trim($phone.val()))) {
+					$phone.focus();
+					api.toast({
+						msg : '您输入的手机号码不正确'
+					});
+				} else {
+					var query = api.require('query');
+					var model = api.require('model');
+					query.createQuery(function(ret, err) {
+						if (ret && ret.qid) {
+							var queryId = ret.qid;
+							query.whereEqual({
+								qid : queryId,
+								column : 'username',
+								value : $phone.val()
+							});	
+							model.findAll({
+								class : "user",
+								qid : queryId
+							}, function(ret, err) {
+								if (ret) {
+									if (ret.length > 0) {
+										api.toast({
+											msg : '该用户名已存在！'
+										});
+									} else {
+										if (!isPushCode && times == 120000) {
+											api.toast({
+												msg : '验证码发送中....',
+												duration : 10000
+											});
+											smsVerify.sms({
+												phone : $.trim($phone.val()),
+												country : "86"
+											}, function(ret, err) {
+												if (ret.smart == true) {// 安卓版特有功能 智能验证
+													api.toast({
+														msg : '智能验证成功：此号码已验证,无需填写验证码！'
+													});
+													document.getElementById("vcode").type = "text";
+													$api.val($api.byId('vcode'), '****');
+													$api.attr($api.byId('vcode'), 'readonly', 'true');
+													V = true;
+												} else {
+													if (ret.status) {
+														api.toast({
+															msg : '短信已发送，请注意查收！'
+														});
+														// 设置120秒才能发送一次
+														flag = setInterval(function() {
+															if (times == 0) {
+																clearInterval(flag);
+																$btnObj.text('短信验证');
+																isPushCode = false;
+																times = 120000;
+															} else {
+																isPushCode = true;
+																times = times - 1000;
+																$btnObj.text("" + (times / 1000) + 'S');
+															}
+														}, 1000);
+													} else {
+														api.toast({
+															msg : '发送失败，请重试!'
+														});
+													}
+												}
+											});
+										} else {
+											api.toast({
+												msg : "请在" + (times / 1000) + "S后再发送！"
+											});
+										}
+									}
+								}
+							});
+						}
+					});
+				}
+			})
+			);
+			$("#picup").on('click',(function() {
+				api.actionSheet({
+					title : '选择图片来源',
+					buttons : ['优雅自拍', '浏览相册']
+				}, function(ret, err) {
+					var index = ret.buttonIndex;
+					switch(index) {
+						// 拍照
+						case 1:
+							// 打开拍照
+							api.getPicture({
+								sourceType : "camera",
+								encodingType : "jpg",
+								destinationType : "url",
+								mediaValue : "pic",
+								quality : 50,
+								saveToPhotoAlbum : true
+							}, function(ret, err) {
+								if (ret) {
+									path = ret.data;
+									$api.attr($api.byId("portrait"), "src", ret.data);
+								
+								}
+							});
+							break;
+						// 打开图片选择器
+						case 2:
+							api.getPicture({
+								sourceType : "album",
+								encodingType : "jpg",
+								destinationType : "url",
+								mediaValue : "pic",
+								quality : 50,
+								saveToPhotoAlbum : true
+							}, function(ret, err) {
+								if (ret) {
+									// 图片压缩
+									imgCompress(ret.data, 0.1, 0.3, getExt(ret.data), function(compressImg) {
+										// 追加图片
+										//$("#portrait").attr("src",compressImg);
+										path = ret.data;
+										$api.attr($api.byId("portrait"), "src", ret.data);
+								
+										//	$api.attr($api.byId("portrait"), "scr", compressImg);
+									});
+									//	$api.attr($api.byId("portrait"), "scr", "fs:" + ret.data);
+								}
+							});
+					}
+				});
+			}));
+		});
+		apiready = function() {
+			imageFilter = api.require("imageFilter");
+			smsVerify = api.require('smsVerify');
+			smsVerify.register(function(ret, err) {
+				if (ret.status) {
+					//api.alert({msg: '注册成功'});
+				} else {
+					api.alert({
+						msg : err.code + ' 注册失败'
+					});
+				}
+			});
+		}
+	</script>
+</html>

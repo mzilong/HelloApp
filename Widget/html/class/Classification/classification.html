@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../../../css/aui.css"/>
+		<style>
+			.iconfont {
+				font-family: "iconfont" !important;
+				font-size: 16px;
+				font-style: normal;
+				-webkit-font-smoothing: antialiased;
+				-webkit-text-stroke-width: 0.2px;
+				-moz-osx-font-smoothing: grayscale;
+			}
+			.span {
+				display: block;
+				margin-top: 3px;
+				line-height: normal;
+				animation: 1s linear 0s normal none infinite H-rotate;
+				-webkit-animation: 1s linear 0s normal none infinite H-rotate;
+			}
+			.span-I {
+				font-size: 4.2rem;
+			}
+			.label {
+				display: block;
+				font-size: 1.4rem;
+				color: white;
+			}
+			.toastDiv {
+				position: absolute;
+				z-index: 1000000;
+				width: 100px;
+				height: 100px;
+				border-radius: 5px;
+				-webkit-border-radius: 5px;
+				background-color: black;
+				color: white;
+				display: -webkit-box;
+				-webkit-box-orient: horizontal;
+				-webkit-box-pack: center;
+				-webkit-box-align: center;
+				display: box;
+				box-orient: horizontal;
+				box-pack: center;
+				box-align: center;
+				text-align: center;
+				background: rgba(0,0,0,0.5);
+			}
+			.icon-loading:before {
+				content: "\f011";
+			}
+			.animated {
+				-webkit-animation-duration: 1s;
+				animation-duration: 1s;
+				-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+			}
+			.animated.infinite {
+				-webkit-animation-iteration-count: infinite;
+				animation-iteration-count: infinite;
+			}
+			.animated.hinge {
+				-webkit-animation-duration: 2s;
+				animation-duration: 2s;
+			}
+			.animated.flipOutX, .animated.flipOutY, .animated.bounceIn, .animated.bounceOut {
+				-webkit-animation-duration: .75s;
+				animation-duration: .75s;
+			}
+			.animated.flip {
+				-webkit-backface-visibility: visible;
+				backface-visibility: visible;
+				-webkit-animation-name: flip;
+				animation-name: flip;
+			}
+			#IMars{outline:none; border:0px;width:auto;}
+		</style>
+	</head>
+	<body>
+		<div class="aui-searchbar-wrap demo" id="search" >
+			<div class="aui-searchbar aui-border-radius" tapmode onclick="doSearch()">
+				<i class="aui-iconfont aui-icon-search"></i>
+				<div class="aui-searchbar-text">
+					请输入文字
+				</div>
+				<div class="aui-searchbar-input">
+					<input type="text" placeholder="请输入文字" id="bodyParam" autocapitalize="off" />
+				</div>
+			</div>
+			<div class="aui-searchbar-cancel aui-text-info" tapmode onclick="search()">
+				生成
+			</div>
+			<div class="aui-searchbar-cancel aui-text-info" tapmode  id="cancel" onclick="cancelSearch()">
+				取消
+			</div>
+		</div>
+		<p class="aui-text-center  aui-padded-20">
+			生成结果
+		</p>
+		<div class="aui-card">
+			<ul class="aui-list-view">
+				<li class="aui-list-view-cell" data-win="list_arrow" id="traditional">
+					繁体文:
+				</li>
+				<li class="aui-list-view-cell" data-win="list_thumb" id="mars">
+					火星文:<input type="text" readonly="true" id="IMars"  autocapitalize="off" />
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../../script/api.js"></script>
+	<script type="text/javascript">
+		apiready = function() {
+			api.parseTapmode();
+		};
+		function doSearch() {
+			$api.addCls($api.dom(".aui-searchbar-wrap"), "focus");
+			$api.dom('.aui-searchbar-input input').focus();
+		}
+
+
+
+		function search() {
+			if ($api.byId('bodyParam').value != '') {
+
+				api.ajax({
+					url : 'http://api.avatardata.cn/HuoXingWen/LookUp?key=0fcb3b48a7494e25a6f729db384114ba&content=' + $api.byId('bodyParam').value + '&changeType=1', //如果地址访问不到会请求出错，请填写自己的接口地址
+					method : 'get',
+					charset : 'utf-8',
+					cache : 'false',
+					timeout : 30,
+					dataTpye : 'json',
+					returnAll : false,
+					data : {
+						values : {
+						}
+					}
+				}, function(ret, err) {
+					if (ret) {
+						if (ret.error_code == '0') {
+							$api.html($api.byId('traditional'), '繁体文:' + ret.result);
+						} else
+							alert(JSON.stringify(ret));
+					} else {
+						alert(JSON.stringify(err));
+					}
+				});
+				api.ajax({
+					url : 'http://api.avatardata.cn/HuoXingWen/LookUp?key=0fcb3b48a7494e25a6f729db384114ba&content=' + $api.byId('bodyParam').value + '&changeType=2', //如果地址访问不到会请求出错，请填写自己的接口地址
+					method : 'get',
+					charset : 'utf-8',
+					cache : 'false',
+					timeout : 30,
+					dataTpye : 'json',
+					returnAll : false,
+					data : {
+						values : {
+						}
+					}
+				}, function(ret, err) {
+					if (ret) {
+						if (ret.error_code == '0') {
+							$api.val($api.byId('IMars'), ret.result);
+
+						} else
+							alert(JSON.stringify(ret));
+					} else {
+						alert(JSON.stringify(err));
+					}
+				});
+			}
+		}
+
+		function cancelSearch() {
+			$api.addEvt($api.dom("#cancel"), 'click', function() {
+				$api.removeCls($api.dom(".aui-searchbar-wrap.focus"), "focus");
+			});
+		}
+	</script>
+</html>

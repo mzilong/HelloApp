@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../../../css/aui.2.0.css"/>
+		<style>
+			.flexbox-horizontal {
+				display: box;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-orient: horizontal;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				width: 100%;
+				-webkit-flex-direction: row;
+				flex-direction: row;
+				box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+			}
+			.channel-title {
+				background: white;
+			}
+			.vertical-middle {
+				display: -webkit-box;
+				-webkit-box-orient: horizontal;
+				-webkit-box-align: center;
+				display: box;
+				box-orient: horizontal;
+				box-align: center;
+			}
+			.border-vertical-bottom-after {
+				position: relative;
+				overflow: hidden;
+			}
+			.border-vertical-bottom-after:after {
+				display: block;
+				content: '';
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				transform-origin: 0 0;
+				transform: scale(1);
+				-webkit-transform-origin: 0 0;
+				-webkit-transform: scale(1);
+				pointer-events: none;
+				border-bottom: 1px solid #e6e6e6;
+			}
+			.channel-line {
+				background-color: black;
+				padding-top: 15px;
+				padding-left: 3px;
+				margin-left: 10px;
+			}
+			.channel-text {
+				font-size: 1.0 rem;
+				color: black;
+				padding: 10px;
+				margin-right: 10px;
+			}
+			.theme-font-color-black:checked {
+				border-color: black;
+				box-shadow: black 0 0 0 26px inset;
+				background-color: black;
+			}
+			.flex-item {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+				box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+			}
+			.text-show-row-1 {
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display: box;
+				display: -webkit-box;
+				word-wrap: break-word;
+				white-space: normal !important;
+				-webkit-box-orient: vertical;
+				line-clamp: 1;
+				-webkit-line-clamp: 1;
+			}
+			.padding-vertical-bottom-10 {
+				padding-bottom: 10px;
+			}
+			.div-3 {
+				background: white;
+			}
+			.div-3-padding-10 {
+				padding: 10px;
+			}
+			.div-3-strong {
+				font-size: 1.0 rem;
+			}
+			.div-3-p {
+				font-size: 1.0 rem;
+				position: absolute;
+				margin: 0;
+				z-index: 10;
+				bottom: 10px;
+				left: 10px;
+				right: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<!--	<div class="channel-title flexbox-horizontal  vertical-middle border-vertical-bottom-after">
+		<div class="channel-line"></div>
+		<div class="channel-text  flex-item  text-show-row-1">文字笑话</div>
+		</div>-->
+		<script id="evaluationTemp" type="text/x-dot-template">
+			{{ for(var x in it) { }}
+			<div class="padding-vertical-bottom-10"></div>
+			<div class="div-3 flexbox-horizontal border-vertical-bottom-after">
+			<div class="flex-item div-3-padding-10">
+			<!--class="H-font-weight-normal font-weight-500 H-font-size-16 H-display-block">一切从简，只为了更懒！-->
+			<strong class="div-3-strong">{{= it[x].content }}</strong>
+			<!--<p class=" div-3-p" ><span style="float: right;">getLocalTime(1293072805)</span></p>-->
+			</div>
+			</div>
+			{{ } }}
+		</script>
+		<div class="evaluation" id="evaluation"></div>
+	</body>
+	<script type="text/javascript" src="../../../script/api.js"></script>
+	<script type="text/javascript" src="../../../script/aui-tab.js" ></script>
+	<script type="text/javascript" src="../../../script/aui-tab.js" ></script>
+	<script type="text/javascript" src="../../../script/doT.min.js"></script>
+	<script type="text/javascript">
+		apiready = function() {
+			api.parseTapmode();
+			api.showProgress({
+				style : 'default',
+				animationType : 'fade',
+				title : '努力加载中...',
+				text : '先喝杯茶...',
+				modal : true
+			});
+			api.ajax({
+				url : 'http://v.juhe.cn/joke/randJoke.php?key=5e7718daf693c9559045d7a61138720f', //如果地址访问不到会请求出错，请填写自己的接口地址
+				method : 'get',
+				cache : 'false',
+				timeout : 30,
+				dataTpye : 'json',
+				data : {
+				}
+			}, function(ret, err) {
+				if (ret) {
+					api.hideProgress();
+					if (ret.error_code == '0') {
+						var evaluationData = ret.result;
+						var evaluation = doT.template($api.dom('#evaluationTemp').innerHTML);
+						$api.dom('#evaluation').innerHTML = evaluation(evaluationData);
+					} else {
+						api.toast({
+							msg : ret.reason
+						});
+					}
+				} else {
+					api.hideProgress();
+					alert(JSON.stringify(err));
+				}
+			});
+			api.setRefreshHeaderInfo({
+				visible : true,
+				loadingImg : 'widget://image/refresh.png',
+				bgColor : '#ccc',
+				textColor : '#fff',
+				textDown : '下拉刷新...',
+				textUp : '松开刷新...',
+				showTime : true
+			}, function(ret, err) {
+				api.showProgress({
+					style : 'default',
+					animationType : 'fade',
+					title : '努力加载中...',
+					text : '先喝杯茶...',
+					modal : true
+				});
+				api.ajax({
+					url : 'http://v.juhe.cn/joke/randJoke.php?key=5e7718daf693c9559045d7a61138720f', //如果地址访问不到会请求出错，请填写自己的接口地址
+					method : 'get',
+					cache : 'false',
+					timeout : 30,
+					dataTpye : 'json',
+					data : {
+					}
+				}, function(ret, err) {
+				api.hideProgress();
+					if (ret) {
+						if (ret.error_code == '0') {
+							var evaluationData = ret.result;
+							var evaluation = doT.template($api.dom('#evaluationTemp').innerHTML);
+							$api.dom('#evaluation').innerHTML = evaluation(evaluationData);
+						} else {
+							api.toast({
+								msg : ret.reason
+							});
+						}
+					} else {
+						alert(JSON.stringify(err));
+					}
+				});
+				api.refreshHeaderLoadDone();
+			});
+		};
+		function getLocalTime(nS) {
+			return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/, ' ');
+		}
+	</script>
+</html>
